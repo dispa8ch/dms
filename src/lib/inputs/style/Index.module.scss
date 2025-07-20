@@ -1,0 +1,85 @@
+.input {
+  position: relative;
+  border: 1px solid #757575;
+  border-radius: 5px;
+
+  //   &.normal {
+  //     border-color: #757575;
+  //   }
+
+  &.tel_wrapper {
+    border-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:focus-within {
+      border-color: transparent;
+    }
+
+    .c_code {
+      height: 3rem;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #757575;
+      border-radius: 5px;
+    }
+
+    .phone_input {
+      border: 1px solid #757575;
+      border-radius: 5px;
+      background: none;
+      height: 3rem;
+      display: block;
+      width: 100%;
+      outline: none;
+      padding: 0 1rem;
+    }
+  }
+  &.with_children {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    span {
+      transform: scale(0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0.5rem;
+      &:last-child {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &:focus-within {
+    border-color: #d1193e;
+  }
+
+  .label {
+    position: absolute;
+    top: -26%;
+    left: 1rem;
+    background: var(--bg-color);
+    padding: 0 0.2rem;
+    display: block;
+  }
+
+  span {
+    color: red;
+  }
+
+  .input_normal {
+    background: none;
+    height: 3rem;
+    display: block;
+    width: 100%;
+    outline: none;
+    padding: 0 1rem;
+    border: none;
+  }
+}

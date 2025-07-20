@@ -31,7 +31,7 @@ export const ApiServiceProvider: React.FC<{ children: React.ReactNode }> = ({
 
     if (!res.ok) {
       if (res.status === 401 || res.status === 403) {
-        showToast("Session expired. Logging out soon.", "error");
+        showToast(json.message || "Session expired.", "error");
         setShowSessionModal(true);
         setTimeout(() => logout(), 10000);
       } else {

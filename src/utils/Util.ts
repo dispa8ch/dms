@@ -96,7 +96,7 @@ export default class Util {
   }
 
   static removeWhitespace(value: string): string {
-    return value.trim();
+    return value.trimStart();
   }
 
   static capitalize(value: string) {

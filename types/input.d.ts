@@ -24,3 +24,24 @@ interface Dispa8chInput {
   className?: string;
   autoComplete?: string;
 }
+
+interface Dispa8chSelect {
+  label?: string;
+  options: Dispa8chSelectOption[];
+  value?: string;
+  onChange: (value: Dispa8chSelectOption) => void;
+  required?: boolean;
+  error?: string;
+  disabled?: boolean;
+  className?: string;
+  name?: string;
+  id?: string;
+  placeholder?: string;
+  loading?: boolean;
+}
+
+interface Dispa8chSelectOption {
+  value: string;
+  label: string;
+  extra?: any; // Optional extra data
+}

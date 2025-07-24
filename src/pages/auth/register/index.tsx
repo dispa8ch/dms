@@ -1,23 +1,55 @@
 import Dispa8chButton from "@/lib/buttons/Dispa8chButton";
 import Dispa8chInput from "@/lib/inputs/Dispa8chInput";
-import { AUTH_ROUTES } from "@/routes/RoutePaths";
+import { APP_ROUTES, AUTH_ROUTES } from "@/routes/RoutePaths";
 import React, { useState } from "react";
 import styles from "@/pages/auth/style/Index.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GeneralIcons } from "@/lib/icons/general";
 import { useRegister } from "@/contexts/RegisterContext";
 import StepOne from "./step_one";
 import StepTwo from "./step_two";
 import Util from "@/utils/Util";
+import { useApiService } from "@/contexts/ApiServiceContext";
+import { apiRoutes } from "@/lib/apiRoutes";
 
 function Register() {
+  const navigate = useNavigate();
+  const api = useApiService();
   const business = useRegister();
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  const disabled =
-    !Util.isValidEmail(business.business_email) ||
-    !Util.isValidPassword(business.user.user_password);
+  const handleSubmit = async () => {
+    setLoading(true);
+
+    api
+      .post(apiRoutes.company.create, {
+        companyName: business.companyName,
+        email: business.business_email,
+        country: business.country,
+        city: business.city,
+        phone: business.phone,
+        address: business.address,
+        logo: null,
+        user: {
+          first_name: business.user.first_name,
+          last_name: business.user.last_name,
+          user_email: business.user.user_email,
+          user_password: business.user.user_password,
+        },
+      })
+      .then((response) => {
+        localStorage.setItem("companyData", JSON.stringify(response.data));
+        localStorage.setItem("token", `${response.token}`);
+        navigate(APP_ROUTES.DASHBOARD);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   return (
     <section className={styles.auth_page}>
@@ -31,11 +63,18 @@ function Register() {
             <Dispa8chButton
               style={{ width: "100%", height: "3rem", marginTop: "2rem" }}
               label="Create your account"
-              disabled={disabled || loading}
+              disabled={
+                !Util.isAllValid([
+                  business.companyName,
+                  business.country,
+                  business.city,
+                  business.phone,
+                ]) || loading
+              }
               loading={loading}
               onClick={(e) => {
                 e.preventDefault();
-                // handleSubmit();
+                handleSubmit();
               }}
               variant="primary"
             />

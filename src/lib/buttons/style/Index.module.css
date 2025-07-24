@@ -31,6 +31,16 @@
   cursor: not-allowed;
   background: #757575;
 }
+.button.text {
+  background: transparent;
+  padding: 0.5rem 0;
+  color: #d1193e;
+}
+.button.text.disabled {
+  filter: brightness(0.8);
+  cursor: not-allowed;
+  color: #757575;
+}
 .button .loader {
   width: 1.3rem;
   height: 1.3rem;

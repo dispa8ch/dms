@@ -34,6 +34,18 @@
     background: #757575;
   }
 
+  &.text {
+    background: transparent;
+    padding: 0.5rem 0;
+    color: #d1193e;
+
+    &.disabled {
+      filter: brightness(0.8);
+      cursor: not-allowed;
+      color: #757575;
+    }
+  }
+
   .loader {
     width: 1.3rem;
     height: 1.3rem;

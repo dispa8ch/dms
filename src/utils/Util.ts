@@ -9,6 +9,7 @@ export default class Util {
     if (Array.isArray(value) && value.length === 0) {
       return true;
     }
+
     if (typeof value === "object" && Object.keys(value).length === 0) {
       return true;
     }
@@ -103,5 +104,13 @@ export default class Util {
     const first = chars[0].toUpperCase();
     const final = first.concat(chars.slice(1).join(""));
     return final;
+  }
+
+  static isAllValid(values: string[]): boolean {
+    if (Array.isArray(values) && values.length !== 0)
+      return values.every((item) => item !== "");
+    else {
+      return false;
+    }
   }
 }

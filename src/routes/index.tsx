@@ -4,6 +4,7 @@ import AppLayout from "@/layouts/AppLayout";
 import NotFound from "@/pages/NotFound";
 import Loading from "@/pages/loaders/Loading";
 import Login from "@/pages/auth/Login";
+import Register from "@/pages/auth/register";
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ export const router = createBrowserRouter([
     element: <AuthLayout />,
     children: [
       { path: "login", element: <Login />, index: true },
-      //   { path: "register", element: <Register /> },
+      { path: "register", element: <Register /> },
     ],
   },
   {

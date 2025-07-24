@@ -16,10 +16,10 @@
   }
 
   form {
-    width: 800px;
-    height: 60vh;
+    width: 50%;
+    min-height: 60vh;
     border-radius: 10px;
-    padding: 1rem;
+    padding: 3rem;
     background: var(--bg-color);
     box-shadow: 0px 0px 60px 0px #00000026;
     margin-bottom: 1rem;
@@ -33,7 +33,7 @@
     }
 
     .form_wrapper {
-      width: 500px;
+      width: 100%;
       height: fit-content;
     }
 

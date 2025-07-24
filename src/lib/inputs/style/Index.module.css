@@ -52,11 +52,12 @@
 }
 .input .label {
   position: absolute;
-  top: -26%;
+  top: -20%;
   left: 1rem;
   background: var(--bg-color);
   padding: 0 0.2rem;
   display: block;
+  font-size: 0.8rem;
 }
 .input span {
   color: red;
@@ -69,4 +70,5 @@
   outline: none;
   padding: 0 1rem;
   border: none;
+  font-size: 0.9rem;
 }/*# sourceMappingURL=Index.module.css.map */

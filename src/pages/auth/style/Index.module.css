@@ -2,13 +2,14 @@
   background: linear-gradient(110.16deg, rgba(209, 25, 62, 0.1) 0%, rgba(253, 168, 0, 0.1) 100%);
   width: 100%;
   height: 100vh;
+  overflow: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 .auth_page .logo_wrapper {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 .auth_page form {
   width: 50%;

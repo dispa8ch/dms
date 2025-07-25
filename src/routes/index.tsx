@@ -5,14 +5,15 @@ import NotFound from "@/pages/NotFound";
 import Loading from "@/pages/loaders/Loading";
 import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/register";
+import Dashboard from "@/pages/dashboard";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
     children: [
-      { path: "", element: <Loading /> },
-      //   { path: "", element: <DashboardHome /> },
+      // { path: "", element: <Loading /> },
+      { path: "", element: <Dashboard /> },
     ],
   },
   {

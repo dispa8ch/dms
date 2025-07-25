@@ -113,4 +113,21 @@ export default class Util {
       return false;
     }
   }
+
+  static formatCounts(count: number): string {
+    if (count < 1000) return count.toString();
+
+    const units = ["K", "M", "B", "T"];
+    let unitIndex = -1;
+
+    while (count >= 1000 && unitIndex < units.length - 1) {
+      count /= 1000;
+      unitIndex++;
+    }
+
+    const isInteger = Number.isInteger(count);
+    return `${isInteger ? count.toFixed(0) : count.toFixed(1)}${
+      units[unitIndex]
+    }`;
+  }
 }

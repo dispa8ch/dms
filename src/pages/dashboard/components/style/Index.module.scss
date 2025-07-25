@@ -1,0 +1,119 @@
+.main_card {
+  display: flex;
+  align-items: center;
+  height: 9rem;
+  justify-content: space-between;
+  border: 0.1rem solid transparent;
+  border-radius: 0.5rem;
+  padding: 2rem;
+
+  .left {
+    position: relative;
+
+    p {
+      color: #ffffff;
+    }
+
+    strong {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 2rem;
+    }
+  }
+
+  &.green {
+    background: #1dd11963;
+    border-color: #1dd119;
+
+    .icon {
+      background: #1dd119;
+    }
+  }
+
+  &.orange {
+    background: #fda8006e;
+    border-color: #fda800;
+
+    .icon {
+      background: #fda800;
+    }
+  }
+}
+
+.minor_card {
+  border: 0.1rem solid transparent;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+
+  .left {
+    position: relative;
+
+    p {
+      color: #ffffff;
+    }
+
+    strong {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .icon {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    border: 0.2rem solid #ffffff;
+    position: absolute;
+    right: -0.5rem;
+    bottom: -1.5rem;
+
+    svg {
+      width: 2rem;
+    }
+  }
+
+  &.blue {
+    background: #0093fd6e;
+    border-color: #0093fd;
+
+    .icon {
+      background: linear-gradient(115.91deg, #0093fd 16.71%, #1900fd 105.03%);
+    }
+  }
+
+  &.purple {
+    background: #2300fd6e;
+    border-color: #2300fd;
+
+    .icon {
+      background: linear-gradient(115.91deg, #2300fd 16.71%, #ee0cd7 105.03%);
+    }
+  }
+
+  &.pinkish {
+    background: #f4190f6e;
+    border-color: #f4190f;
+
+    .icon {
+      background: linear-gradient(132.83deg, #e92e29 16.99%, #ffb800 129.69%);
+    }
+  }
+}

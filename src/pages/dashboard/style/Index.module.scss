@@ -1,0 +1,29 @@
+.wrapper {
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+  }
+
+  .right {
+    margin-bottom: 1rem;
+
+    .top {
+      margin-bottom: 1rem;
+
+      .main_cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .minor_cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+    }
+  }
+}

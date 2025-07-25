@@ -1,0 +1,29 @@
+.tableWrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+th,
+td {
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+tr:hover {
+  background: #f5f5f5;
+  cursor: pointer;
+}
+tr:nth-child(odd) {
+  background: #f6f6f6;
+}
+
+thead {
+  background-color: #f6f6f6;
+}/*# sourceMappingURL=Index.module.css.map */

@@ -1,0 +1,99 @@
+.main_card {
+  display: flex;
+  align-items: center;
+  height: 9rem;
+  justify-content: space-between;
+  border: 0.1rem solid transparent;
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+.main_card .left {
+  position: relative;
+}
+.main_card .left p {
+  color: #ffffff;
+}
+.main_card .left strong {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-top: 0.5rem;
+}
+.main_card .icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main_card .icon svg {
+  width: 2rem;
+}
+.main_card.green {
+  background: rgba(29, 209, 25, 0.3882352941);
+  border-color: #1dd119;
+}
+.main_card.green .icon {
+  background: #1dd119;
+}
+.main_card.orange {
+  background: rgba(253, 168, 0, 0.431372549);
+  border-color: #fda800;
+}
+.main_card.orange .icon {
+  background: #fda800;
+}
+
+.minor_card {
+  border: 0.1rem solid transparent;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.minor_card .left {
+  position: relative;
+}
+.minor_card .left p {
+  color: #ffffff;
+}
+.minor_card .left strong {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-top: 0.5rem;
+}
+.minor_card .icon {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: 0.2rem solid #ffffff;
+  position: absolute;
+  right: -0.5rem;
+  bottom: -1.5rem;
+}
+.minor_card .icon svg {
+  width: 2rem;
+}
+.minor_card.blue {
+  background: rgba(0, 147, 253, 0.431372549);
+  border-color: #0093fd;
+}
+.minor_card.blue .icon {
+  background: linear-gradient(115.91deg, #0093fd 16.71%, #1900fd 105.03%);
+}
+.minor_card.purple {
+  background: rgba(35, 0, 253, 0.431372549);
+  border-color: #2300fd;
+}
+.minor_card.purple .icon {
+  background: linear-gradient(115.91deg, #2300fd 16.71%, #ee0cd7 105.03%);
+}
+.minor_card.pinkish {
+  background: rgba(244, 25, 15, 0.431372549);
+  border-color: #f4190f;
+}
+.minor_card.pinkish .icon {
+  background: linear-gradient(132.83deg, #e92e29 16.99%, #ffb800 129.69%);
+}/*# sourceMappingURL=Index.module.css.map */

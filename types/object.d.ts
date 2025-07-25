@@ -111,3 +111,16 @@ interface ToastContextType {
   showToast: (message: string, type?: Toast["type"]) => void;
   removeToast: (id: string) => void;
 }
+
+interface MainDashboardCard {
+  className: string;
+  title: string;
+  count: number;
+  icon: React.ReactNode;
+}
+
+interface MinorDashboardCard {
+  className: string;
+  title: string;
+  count: number;
+}

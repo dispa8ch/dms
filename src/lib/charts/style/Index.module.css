@@ -1,0 +1,45 @@
+.chart_container {
+  position: relative;
+}
+
+.chart {
+  width: 100%;
+}
+.chart .head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.chart .head h2 {
+  font-size: 1rem;
+}
+.chart .head .drop_down {
+  padding: 0.3rem 0.5rem;
+  border: 0.1rem solid #757575;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 7rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+.chart .head .drop_down .items {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border-radius: 0.3rem;
+  background: var(--bg-color);
+  width: 100%;
+  z-index: 10;
+}
+.chart .head .drop_down .items button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}/*# sourceMappingURL=Index.module.css.map */

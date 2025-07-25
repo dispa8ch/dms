@@ -68,6 +68,7 @@ function Register() {
                   business.companyName,
                   business.country,
                   business.city,
+                  business.address,
                   business.phone,
                 ]) || loading
               }

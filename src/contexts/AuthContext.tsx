@@ -1,6 +1,7 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { useApiService } from "./ApiServiceContext";
 import { apiRoutes } from "@/lib/apiRoutes";
+import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
   logout: () => void;
@@ -16,6 +17,7 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const navigate = useNavigate();
   const api = useApiService();
   const logout = () => {
     api
@@ -36,6 +38,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         // Any additional cleanup can be done here
       });
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // If no token, redirect to login
+      navigate("/auth/login");
+    } else {
+      alert(token);
+    }
+    return () => {
+      // Cleanup if necessary
+    };
+  }, []);
 
   return (
     <AuthContext.Provider value={{ logout }}>{children}</AuthContext.Provider>

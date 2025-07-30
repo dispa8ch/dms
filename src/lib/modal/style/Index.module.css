@@ -1,51 +1,54 @@
 .modal {
-  background: rgba(0, 0, 0, 0.322);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  background: rgba(0, 0, 0, 0.3215686275);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  display: none;
 }
-.modal .modal_container {
-  background: #ffffff;
-  border-radius: 0.5rem;
-  box-shadow: 0px 1px 30px 0px rgba(0, 0, 0, 0.2509803922);
-  max-width: 60vh;
-  min-width: 20vw;
-  min-height: 40vh;
-  overflow-y: auto;
+.modal.visible {
+  display: flex;
 }
-.modal .modal_container .header {
+.modal .modal_wrapper {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 60%;
+  max-width: 550px;
+  position: relative;
+}
+.modal .modal_wrapper .head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  background: #ffffff;
-  left: 0;
-  top: 0;
-  position: sticky;
+  border-bottom: 0.09rem solid #e3e5e5;
 }
-.modal .modal_container .header .title {
-  font-weight: 700;
-  font-size: 1.2rem;
+.modal .modal_wrapper .head h4 {
+  color: var(--title-color);
 }
-.modal .modal_container .header span {
+.modal .modal_wrapper .head button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transform: scale(0.7);
 }
-.modal .modal_container .body {
-  max-height: 70vh;
-  min-height: 40vh;
+.modal .modal_wrapper .children {
+  margin: 1rem 0;
   padding: 1rem;
+  width: 100%;
+  min-height: 20rem;
 }
-.modal .modal_container .action_buttons {
+.modal .modal_wrapper .bottom {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 1rem;
   padding: 1rem;
+  border-top: 0.09rem solid #e3e5e5;
 }/*# sourceMappingURL=Index.module.css.map */

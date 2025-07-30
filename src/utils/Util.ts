@@ -26,6 +26,16 @@ export default class Util {
       .trim();
   }
 
+  static getInitials(name: string): string {
+    if (!name) return "";
+
+    return name
+      .trim()
+      .split(/\s+/)
+      .map((word) => word[0].toUpperCase())
+      .join("");
+  }
+
   static isValidEmail(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -129,5 +139,14 @@ export default class Util {
     return `${isInteger ? count.toFixed(0) : count.toFixed(1)}${
       units[unitIndex]
     }`;
+  }
+
+  static generateDeepColor(): string {
+    // Use HSLA: Keep saturation high and lightness low for deep colors
+    const hue = Math.floor(Math.random() * 360); // 0 - 359
+    const saturation = Math.floor(60 + Math.random() * 30); // 60% - 90%
+    const lightness = Math.floor(20 + Math.random() * 20); // 20% - 40%
+
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
   }
 }

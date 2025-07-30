@@ -1,10 +1,25 @@
-import { createContext, useEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
+
+type Theme = "light" | "dark" | "system";
+
+interface App {
+  theme: Theme;
+  app_name: string;
+  getTheme: () => Theme;
+  updateTheme: (newTheme: Theme) => void;
+}
 
 export const AppContext = createContext<App>({
   theme: "light",
   app_name: "DMS",
-  getTheme: () => localStorage.getItem("theme") as Theme,
-  toggleTheme: () => {
+  getTheme: () => "light",
+  updateTheme: () => {
     throw Error("Must be used inside the App");
   },
 });
@@ -12,31 +27,59 @@ export const AppContext = createContext<App>({
 function AppProvider({ children }: { children: ReactNode }) {
   const app_name = JSON.parse(localStorage.getItem("company_data") ?? "{}")
     .app_name as string;
-  const [theme, setTheme] = useState<Theme>("dark");
+
+  const [theme, setTheme] = useState<Theme>("light");
+
   useEffect(() => {
-    const saved = localStorage.getItem("theme") || "dark";
-    document.documentElement.setAttribute("data-theme", saved);
-    setTheme(saved as Theme);
+    const savedTheme = (localStorage.getItem("theme") || "system") as Theme;
+    applyTheme(savedTheme);
+    setTheme(savedTheme);
+
+    if (savedTheme === "system") {
+      const mq = window.matchMedia("(prefers-color-scheme: dark)");
+      const handler = () => applyTheme("system");
+      mq.addEventListener("change", handler);
+
+      return () => mq.removeEventListener("change", handler);
+    }
   }, []);
 
+  const applyTheme = (themeValue: Theme) => {
+    const html = document.documentElement;
+
+    if (themeValue === "system") {
+      const systemIsDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      html.setAttribute("data-theme", systemIsDark ? "dark" : "light");
+    } else {
+      html.setAttribute("data-theme", themeValue);
+    }
+  };
+
   function getTheme(): Theme {
-    const saved = localStorage.getItem("theme") || "light";
-    return saved as Theme;
+    return (localStorage.getItem("theme") || "system") as Theme;
   }
 
-  function toggleTheme() {
-    const html = document.documentElement;
-    const current = html.getAttribute("data-theme");
-    const newTheme = current === "dark" ? "light" : "dark";
-    html.setAttribute("data-theme", newTheme);
+  function updateTheme(newTheme: Theme) {
     localStorage.setItem("theme", newTheme);
+    setTheme(newTheme);
+    applyTheme(newTheme);
   }
 
   return (
-    <AppContext.Provider value={{ toggleTheme, app_name, theme, getTheme }}>
+    <AppContext.Provider value={{ updateTheme, app_name, theme, getTheme }}>
       {children}
     </AppContext.Provider>
   );
+}
+
+export function useApp() {
+  const app = useContext(AppContext);
+  if (!app) {
+    throw new Error("App is not initialized");
+  }
+  return app;
 }
 
 export default AppProvider;

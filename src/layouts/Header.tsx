@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "@/layouts/styles/Index.module.css";
 import { GeneralIcons } from "@/lib/icons/general";
 import { APP_ROUTES } from "@/routes/RoutePaths";
+import Account from "./components/Account";
 
 function Header() {
+  const [drop, setDrop] = useState(false);
   const headerTabs = [
     {
       label: "Complaint",
@@ -44,9 +46,22 @@ function Header() {
             </Link>
           ))}
         </div>
-        <div className={styles.app_header_right_user_profile}>
+        <div
+          className={styles.app_header_right_user_profile}
+          onClick={(e) => {
+            e.stopPropagation();
+            setDrop((prev) => !prev);
+          }}
+        >
           <span>AB</span>
         </div>
+        {drop && (
+          <Account
+            fullName="KingTony Technologies"
+            email="business@kingtonytech.it.com"
+            image=""
+          />
+        )}
       </div>
     </header>
   );

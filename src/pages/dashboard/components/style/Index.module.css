@@ -11,13 +11,14 @@
   position: relative;
 }
 .main_card .left p {
-  color: #ffffff;
+  color: var(--text-color);
 }
 .main_card .left strong {
   display: block;
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: 800;
   margin-top: 0.5rem;
+  color: var(--title-color);
 }
 .main_card .icon {
   width: 3rem;
@@ -52,17 +53,15 @@
   position: relative;
   overflow: hidden;
 }
-.minor_card .left {
-  position: relative;
+.minor_card p {
+  color: var(--text-color);
 }
-.minor_card .left p {
-  color: #ffffff;
-}
-.minor_card .left strong {
+.minor_card strong {
   display: block;
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: 800;
   margin-top: 0.5rem;
+  color: var(--title-color);
 }
 .minor_card .icon {
   width: 5rem;
@@ -96,4 +95,17 @@
 }
 .minor_card.pinkish .icon {
   background: linear-gradient(132.83deg, #e92e29 16.99%, #ffb800 129.69%);
+}
+
+.side_bar {
+  padding: 1rem;
+  border: 0.1rem solid #d2d2d2;
+  border-radius: 1rem;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.side_bar .grid_top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }/*# sourceMappingURL=Index.module.css.map */

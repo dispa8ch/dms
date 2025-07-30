@@ -9,3 +9,17 @@ interface ModalContainer {
   actionDiabled?: boolean;
   actionLoading?: boolean;
 }
+
+interface Dispa8chModal {
+  title: string;
+  onClose: () => void;
+  visible: boolean;
+  children: React.ReactNode;
+  replaceBottom?: React.ReactNode;
+  actionButtonPayload?: {
+    icon?: React.ReactNode;
+    label: string;
+    action: () => void;
+    disabled?: boolean;
+  };
+}

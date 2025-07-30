@@ -1,9 +1,14 @@
-interface Dispa8chButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  label?: string;
+type Dispa8chButtonColor = "purple-main" | "black" | "grey" | "blue";
+type Dispa8chButtonType = "primary" | "secondary" | "outline" | "link";
+
+interface Dispa8chButton {
+  label: string;
+  onClick: () => void;
   icon?: React.ReactNode;
-  loading?: boolean;
-  variant?: "primary" | "secondary" | "danger" | "link" | "text"; // Optional style control
+  color?: Dispa8chButtonColor;
+  type: Dispa8chButtonType;
+  disabled?: boolean;
+  path?: string;
   loading?: boolean;
   link_type?: "text" | "outline";
-  path?: string;
 }

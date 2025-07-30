@@ -1,6 +1,6 @@
 .app_layout {
   width: 100%;
-  height: 100vh;
+  height: 87vh;
 
   .app_header {
     display: flex;
@@ -17,7 +17,7 @@
       // top: 0;
       left: 0;
       // right: 0;
-      width: 100%;
+      width: 99%;
       bottom: 0;
       padding: 0.03rem;
       background: linear-gradient(180deg, #fda800 0%, #e41f47 100%);
@@ -44,6 +44,7 @@
 
       h2 {
         font-size: 1.2rem;
+        color: var(--title-color);
       }
     }
 
@@ -64,6 +65,12 @@
           align-items: center;
           justify-content: center;
           flex-direction: column;
+
+          svg {
+            path {
+              fill: var(--small-text-color);
+            }
+          }
         }
       }
 
@@ -99,6 +106,7 @@
       &::before {
         content: "";
         position: absolute;
+        height: 99%;
         top: 0;
         // left: 0;
         right: 0;

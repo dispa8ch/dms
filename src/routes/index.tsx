@@ -6,11 +6,16 @@ import Loading from "@/pages/loaders/Loading";
 import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/register";
 import Dashboard from "@/pages/dashboard";
+import RequireAuth from "@/RequireAuth";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
+    element: (
+      <RequireAuth>
+        <AppLayout />
+      </RequireAuth>
+    ),
     children: [
       // { path: "", element: <Loading /> },
       { index: true, element: <Dashboard /> },

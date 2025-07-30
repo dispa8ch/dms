@@ -1,0 +1,91 @@
+.account {
+  position: absolute;
+  right: 1rem;
+  top: 100%;
+  min-width: 20rem;
+  background: var(--card-bg);
+  box-shadow: 0px 1px 10px 0px #00000040;
+  border-radius: 1rem;
+
+  .wrapper {
+    padding: 1.5rem;
+
+    &.top {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    &.middle {
+      position: relative;
+      border-top: 0.1rem solid #d7d7d7;
+      border-bottom: 0.1rem solid #d7d7d7;
+      width: 100%;
+
+      button {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.7rem 0;
+        color: var(--text-color);
+        cursor: pointer;
+
+        svg {
+          path {
+            fill: var(--small-text-color);
+          }
+        }
+      }
+    }
+
+    &.bottom {
+      position: relative;
+
+      .toggle {
+        display: flex;
+        width: 100%;
+        gap: 0.7rem;
+        align-items: center;
+        color: var(--text-color);
+        cursor: pointer;
+
+        .icon {
+          display: block;
+          margin-left: auto;
+        }
+
+        svg {
+          path {
+            fill: var(--small-text-color);
+          }
+        }
+      }
+
+      div {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--card-bg);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0px 1px 10px 0px #00000040;
+
+        button {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          padding: 0.7rem 1rem;
+          color: var(--text-color);
+          cursor: pointer;
+
+          svg {
+            path {
+              fill: var(--small-text-color);
+            }
+          }
+        }
+      }
+    }
+  }
+}

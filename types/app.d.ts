@@ -1,8 +1,8 @@
 interface App {
   theme: Theme;
   app_name: string;
-  toggleTheme: () => void;
+  updateTheme: (theme: Theme) => void;
   getTheme: () => Theme;
 }
 
-type Theme = "light" | "dark";
+type Theme = "light" | "dark" | "system";

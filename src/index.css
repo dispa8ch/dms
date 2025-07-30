@@ -1,7 +1,9 @@
 :root {
-  --text-color: #121212;
+  --text-color: #3f3f3f;
   --bg-color: #ffffff;
+  --small-text-color: #5a5a5a;
   --primary-color: #e41f47;
+  --card-bg: #ffffff;
 
   font-family: "Poppins", sans-serif;
 
@@ -22,10 +24,15 @@
   outline: none;
   background: none;
   font-family: "Poppins", sans-serif;
+  border: none;
 }
 
 html {
-  font-size: 80%;
+  font-size: 75%;
+}
+
+body {
+  background: var(--bg-color);
 }
 
 a {
@@ -33,10 +40,24 @@ a {
   text-decoration: none;
 }
 
+p {
+  color: var(--text-color);
+}
+
+h1 {
+  color: var(--title-color);
+}
+
+small {
+  color: var(--small-text-color);
+}
+
 [data-theme="dark"] {
   --text-color: #f5f5f5;
   --bg-color: #121212;
   --title-color: #ffffff;
+  --small-text-color: #bebebe;
+  --card-bg: #1e1e1e;
 }
 
 /* @media (prefers-color-scheme: light) {

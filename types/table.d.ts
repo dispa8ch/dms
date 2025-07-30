@@ -1,6 +1,11 @@
 interface Dispa8chTable {
   headers: (string | React.ReactNode)[];
   children: React.ReactNode; // rows will be passed here
+  type?: "collapsed" | "main";
+  title?: string;
+  rightNode?: React.ReactNode;
+  action?: () => void;
+  count?: number;
 }
 
 interface Dispa8chTableRow {

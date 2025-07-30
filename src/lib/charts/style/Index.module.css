@@ -24,22 +24,25 @@
   width: 7rem;
   border-radius: 0.3rem;
   cursor: pointer;
+  color: var(--text-color);
 }
 .chart .head .drop_down .items {
   position: absolute;
   top: 100%;
   left: 0;
   border-radius: 0.3rem;
-  background: var(--bg-color);
+  background: var(--card-bg);
   width: 100%;
   z-index: 10;
+  box-shadow: 0 0.5rem 1rem rgba(65, 65, 65, 0.2);
 }
 .chart .head .drop_down .items button {
   display: block;
   width: 100%;
   text-align: left;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   background: transparent;
   border: none;
   cursor: pointer;
+  color: var(--text-color);
 }/*# sourceMappingURL=Index.module.css.map */

@@ -744,4 +744,18 @@ export const GeneralIcons = {
       ></path>
     </svg>
   ),
+  drop_icon: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="6"
+      height="4"
+      fill="none"
+      viewBox="0 0 6 4"
+    >
+      <path
+        fill="#757575"
+        d="M2.407 3.198a.6.6 0 0 0 .906 0l1.804-2.083a.6.6 0 0 0-.453-.992H1.056a.6.6 0 0 0-.453.992z"
+      ></path>
+    </svg>
+  ),
 };

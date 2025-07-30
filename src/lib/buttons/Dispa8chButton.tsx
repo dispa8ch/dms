@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 function Dispa8chButton({
   label = "Click",
   color,
-  children,
-  variant = "primary",
+  type = "primary",
   icon,
   disabled,
   loading,
@@ -14,13 +13,13 @@ function Dispa8chButton({
   path,
   ...rest
 }: Dispa8chButton) {
-  return variant === "link" ? (
-    <Link to={path ?? ""} className={`${styles[variant]}`}>
+  return type === "link" ? (
+    <Link to={path ?? ""} className={`${styles[type]}`}>
       {label}
     </Link>
   ) : (
     <button
-      className={`${styles.button} ${styles[variant]} ${
+      className={`${styles.button} ${styles[type]} ${
         loading || disabled ? styles.disabled : ""
       }`}
       disabled={disabled || loading}
@@ -32,7 +31,6 @@ function Dispa8chButton({
         <>
           {icon ?? null}
           {label}
-          {children}
         </>
       )}
     </button>

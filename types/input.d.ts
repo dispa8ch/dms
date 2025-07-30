@@ -45,3 +45,24 @@ interface Dispa8chSelectOption {
   label: string;
   extra?: any; // Optional extra data
 }
+
+interface Dispa8chDropDown {
+  label?: string;
+  options: Dispa8chDropDownOption[];
+  value?: string;
+  onChange: (value: Dispa8chDropDownOption) => void;
+  required?: boolean;
+  error?: string;
+  disabled?: boolean;
+  className?: string;
+  name?: string;
+  id?: string;
+  placeholder?: string;
+  loading?: boolean;
+}
+
+interface Dispa8chDropDownOption {
+  value: string;
+  label: string;
+  extra?: any; // Optional extra data
+}

@@ -19,7 +19,7 @@ function Dispa8chChart({
   title = "Dispa8ch Report",
 }: Dispa8chChartProps) {
   const [filter, setFilter] = useState<"day" | "month" | "year">("day");
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const { labels, values } = useMemo(() => {
     const formatter = new Intl.DateTimeFormat("en-US", {
       day: filter === "day" ? "numeric" : undefined,
@@ -89,7 +89,7 @@ function Dispa8chChart({
           )}
         </div>
       </div>
-      <LineChart labels={labels} dataPoints={values} />
+      <LineChart labels={labels.reverse()} dataPoints={values.reverse()} />
     </div>
   );
 }

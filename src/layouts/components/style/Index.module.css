@@ -1,0 +1,73 @@
+.account {
+  position: absolute;
+  right: 1rem;
+  top: 100%;
+  min-width: 20rem;
+  background: var(--card-bg);
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.2509803922);
+  border-radius: 1rem;
+}
+.account .wrapper {
+  padding: 1.5rem;
+}
+.account .wrapper.top {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.account .wrapper.middle {
+  position: relative;
+  border-top: 0.1rem solid #d7d7d7;
+  border-bottom: 0.1rem solid #d7d7d7;
+  width: 100%;
+}
+.account .wrapper.middle button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 0;
+  color: var(--text-color);
+  cursor: pointer;
+}
+.account .wrapper.middle button svg path {
+  fill: var(--small-text-color);
+}
+.account .wrapper.bottom {
+  position: relative;
+}
+.account .wrapper.bottom .toggle {
+  display: flex;
+  width: 100%;
+  gap: 0.7rem;
+  align-items: center;
+  color: var(--text-color);
+  cursor: pointer;
+}
+.account .wrapper.bottom .toggle .icon {
+  display: block;
+  margin-left: auto;
+}
+.account .wrapper.bottom .toggle svg path {
+  fill: var(--small-text-color);
+}
+.account .wrapper.bottom div {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--card-bg);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.2509803922);
+}
+.account .wrapper.bottom div button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.7rem 1rem;
+  color: var(--text-color);
+  cursor: pointer;
+}
+.account .wrapper.bottom div button svg path {
+  fill: var(--small-text-color);
+}/*# sourceMappingURL=Index.module.css.map */

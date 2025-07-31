@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { useAuth } from "./AuthContext";
 import { useToast } from "./ToastContext";
-import SessionExpiredModal from "@/components/modals/SessionExpiredModal";
+import SessionExpiredModal from "@/lib/modal/SessionExpiredModal";
 
 const ApiServiceContext = createContext<ApiServiceType | null>(null);
 

@@ -44,12 +44,25 @@ p {
   color: var(--text-color);
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--title-color);
 }
 
 small {
   color: var(--small-text-color);
+}
+
+input {
+  color: var(--text-color);
+}
+
+label {
+  color: var(--title-color);
 }
 
 [data-theme="dark"] {

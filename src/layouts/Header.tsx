@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "@/layouts/styles/Index.module.css";
 import { GeneralIcons } from "@/lib/icons/general";
@@ -7,6 +7,9 @@ import Account from "./components/Account";
 
 function Header() {
   const [drop, setDrop] = useState(false);
+  const [company, setCompany] = useState<CompanyHalf>(
+    JSON.parse(localStorage.getItem("companyInfo") ?? "{}")
+  );
   const headerTabs = [
     {
       label: "Complaint",
@@ -28,12 +31,19 @@ function Header() {
     },
   ];
 
+  useEffect(() => {
+    setCompany(
+      (prev) =>
+        JSON.parse(localStorage.getItem("companyInfo") ?? "{}") as CompanyHalf
+    );
+  }, []);
+
   return (
     <header className={styles.app_header}>
       <div className={styles.app_header_left}>
         <span className={styles.logo}>{GeneralIcons.logo}</span>
         <div>
-          <h2>Sample Name</h2>
+          <h2>{company.company_name}</h2>
           <small>Powered by Dispa8ch</small>
         </div>
       </div>

@@ -75,21 +75,21 @@ function Login() {
             />
           </div>
           <Dispa8chButton
-            style={{ marginTop: "0.5rem" }}
+            buttonStyle={{ marginTop: "0.5rem" }}
             label="Forgot password?"
             path=""
-            variant="link"
+            type="link"
           />
           <Dispa8chButton
-            style={{ width: "100%", height: "3rem", marginTop: "2rem" }}
+            buttonStyle={{ width: "100%", height: "3rem", marginTop: "2rem" }}
             label="Login account"
             disabled={disabled || loading}
             loading={loading}
             onClick={(e) => {
-              e.preventDefault();
+              e?.preventDefault();
               handleSubmit();
             }}
-            variant="primary"
+            type="primary"
           />
         </div>
       </form>

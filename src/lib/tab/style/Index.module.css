@@ -1,0 +1,63 @@
+.tab_layout {
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+}
+.tab_layout .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.tab_layout .top .tabs {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.tab_layout .top .tabs button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 0.15rem solid transparent;
+  color: #979c9e;
+  font-weight: 500;
+  font-size: 1rem;
+}
+.tab_layout .top .tabs button.active {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+.tab_layout .middle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.tab_layout .middle .left {
+  width: 45%;
+}
+.tab_layout .middle .right {
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+}
+.tab_layout .contents {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  /* For WebKit browsers like Chrome, Edge, Safari */
+}
+.tab_layout .contents::-webkit-scrollbar {
+  width: 4px;
+}
+.tab_layout .contents::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+.tab_layout .contents::-webkit-scrollbar-thumb {
+  background: #d8d8d8; /* You can change this to match your theme */
+  border-radius: 6px;
+}
+.tab_layout .contents::-webkit-scrollbar-thumb:hover {
+  background: #a71def;
+}/*# sourceMappingURL=Index.module.css.map */

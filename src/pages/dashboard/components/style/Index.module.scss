@@ -122,6 +122,106 @@
   border-radius: 1rem;
   height: fit-content;
 
+  .new_order {
+    position: relative;
+
+    h5 {
+      color: var(--title-color);
+      font-weight: 700;
+    }
+
+    &_wrapper {
+      margin: 0.5rem 0;
+      border-radius: 0.5rem;
+      border: 0.1rem solid #d2d2d2;
+
+      .header {
+        padding: 0.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 0.1rem solid #d2d2d2;
+
+        p {
+          color: var(--title-color);
+          text-decoration: underline;
+          font-weight: 600;
+          font-size: 0.9rem;
+        }
+
+        .right {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          b {
+            color: var(--title-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      .body {
+        padding: 0.5rem;
+
+        .row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          &:nth-child(2) {
+            margin-top: 2rem;
+            position: relative;
+
+            &::before {
+              content: "";
+              position: absolute;
+              background: #d1193e;
+              width: 2px;
+              height: 100%;
+              top: -120%;
+              left: 6px;
+            }
+          }
+
+          p {
+            font-weight: 700;
+            font-size: 0.9rem;
+          }
+
+          small {
+            font-weight: 600;
+          }
+
+          .left {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+
+            .circle {
+              width: 1.2rem;
+              height: 1.2rem;
+              border-radius: 50%;
+              border: 0.1rem solid #d1193e;
+              background: #d1193e6e;
+              display: flex;
+              flex-shrink: 0;
+            }
+
+            .icon {
+              width: 1.2rem;
+              height: 1.2rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .grid_top {
     display: flex;
     align-items: center;

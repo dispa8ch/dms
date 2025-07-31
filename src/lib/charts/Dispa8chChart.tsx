@@ -4,22 +4,24 @@ import styles from "@/lib/charts/style/Index.module.css";
 import Util from "@/utils/Util";
 import { ChartIcons } from "./icon";
 
-type ChartPoint = {
-  date: string; // ISO date string
+// Define the expected structure for generic T
+type BaseChartData = {
+  date: string | Date;
   value: number;
 };
 
-type Dispa8chChartProps = {
-  data: ChartPoint[];
+type Dispa8chChartProps<T extends BaseChartData> = {
+  data: T[];
   title?: string;
 };
 
-function Dispa8chChart({
+function Dispa8chChart<T extends BaseChartData>({
   data,
   title = "Dispa8ch Report",
-}: Dispa8chChartProps) {
+}: Dispa8chChartProps<T>) {
   const [filter, setFilter] = useState<"day" | "month" | "year">("day");
   const [open, setOpen] = useState(false);
+
   const { labels, values } = useMemo(() => {
     const formatter = new Intl.DateTimeFormat("en-US", {
       day: filter === "day" ? "numeric" : undefined,
@@ -52,15 +54,15 @@ function Dispa8chChart({
   const obj = [
     {
       label: "Day",
-      value: "day" as typeof filter,
+      value: "day" as const,
     },
     {
       label: "Month",
-      value: "month" as typeof filter,
+      value: "month" as const,
     },
     {
       label: "Year",
-      value: "year" as typeof filter,
+      value: "year" as const,
     },
   ];
 
@@ -89,6 +91,7 @@ function Dispa8chChart({
           )}
         </div>
       </div>
+
       <LineChart labels={labels.reverse()} dataPoints={values.reverse()} />
     </div>
   );

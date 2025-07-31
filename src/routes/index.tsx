@@ -7,6 +7,7 @@ import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/register";
 import Dashboard from "@/pages/dashboard";
 import RequireAuth from "@/RequireAuth";
+import Orders from "@/pages/orders";
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ export const router = createBrowserRouter([
     children: [
       // { path: "", element: <Loading /> },
       { index: true, element: <Dashboard /> },
+      { path: "/orders", element: <Orders /> },
     ],
   },
   {

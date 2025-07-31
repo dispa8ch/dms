@@ -6,7 +6,7 @@ function MinorCard({ title, count, className }: MinorDashboardCard) {
   return (
     <div className={`${styles.minor_card} ${styles[className]}`}>
       <p>{title}</p>
-      <strong>{Util.formatCounts(count)}</strong>
+      <strong>{Util.formatCounts(Number(count))}</strong>
       <span className={styles.icon}></span>
     </div>
   );

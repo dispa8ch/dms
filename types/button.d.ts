@@ -3,7 +3,7 @@ type Dispa8chButtonType = "primary" | "secondary" | "outline" | "link";
 
 interface Dispa8chButton {
   label: string;
-  onClick: () => void;
+  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
   icon?: React.ReactNode;
   color?: Dispa8chButtonColor;
   type: Dispa8chButtonType;
@@ -11,4 +11,6 @@ interface Dispa8chButton {
   path?: string;
   loading?: boolean;
   link_type?: "text" | "outline";
+  size?: "small" | "medium" | "large";
+  buttonStyle?: React.CSSProperties;
 }

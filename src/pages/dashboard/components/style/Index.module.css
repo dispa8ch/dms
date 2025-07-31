@@ -104,6 +104,90 @@
   height: -moz-fit-content;
   height: fit-content;
 }
+.side_bar .new_order {
+  position: relative;
+}
+.side_bar .new_order h5 {
+  color: var(--title-color);
+  font-weight: 700;
+}
+.side_bar .new_order_wrapper {
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #d2d2d2;
+}
+.side_bar .new_order_wrapper .header {
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.1rem solid #d2d2d2;
+}
+.side_bar .new_order_wrapper .header p {
+  color: var(--title-color);
+  text-decoration: underline;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.side_bar .new_order_wrapper .header .right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.side_bar .new_order_wrapper .header .right b {
+  color: var(--title-color);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.side_bar .new_order_wrapper .body {
+  padding: 0.5rem;
+}
+.side_bar .new_order_wrapper .body .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.side_bar .new_order_wrapper .body .row:nth-child(2) {
+  margin-top: 2rem;
+  position: relative;
+}
+.side_bar .new_order_wrapper .body .row:nth-child(2)::before {
+  content: "";
+  position: absolute;
+  background: #d1193e;
+  width: 2px;
+  height: 100%;
+  top: -120%;
+  left: 6px;
+}
+.side_bar .new_order_wrapper .body .row p {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.side_bar .new_order_wrapper .body .row small {
+  font-weight: 600;
+}
+.side_bar .new_order_wrapper .body .row .left {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.side_bar .new_order_wrapper .body .row .left .circle {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  border: 0.1rem solid #d1193e;
+  background: rgba(209, 25, 62, 0.431372549);
+  display: flex;
+  flex-shrink: 0;
+}
+.side_bar .new_order_wrapper .body .row .left .icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .side_bar .grid_top {
   display: flex;
   align-items: center;

@@ -1,0 +1,47 @@
+.play_select {
+  justify-content: space-between;
+  opacity: 1;
+  border-radius: 0.5rem;
+  padding: 0.7rem;
+  border: 0.1rem solid #e3e5e5;
+  background: #fbfbfb;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 10rem;
+}
+.play_select .options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 10rem;
+  background: #ffffff;
+  box-shadow: 0 0.5rem 1rem rgba(91, 91, 91, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  z-index: 10;
+  overflow: auto;
+}
+.play_select .options .option {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+.play_select .options .option:hover {
+  background: #f5f5f5;
+}
+.play_select .options .option .icon {
+  display: block;
+}
+.play_select .options .option .icon img {
+  width: 1.5rem;
+  height: 1rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}/*# sourceMappingURL=Index.module.css.map */

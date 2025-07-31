@@ -32,12 +32,25 @@ interface DashboardData {
   stats: Stats;
   recentOrders: RecentOrder[];
   inTransitOrders: InTransitOrder[];
-  newOrders: any[];
+  newOrders: Order[];
   monthlySales: MonthlySale[];
   companyInfo: {
     company_name: string;
     company_logo: string;
   };
+}
+
+interface UserData {
+  id: string;
+  company_id: string;
+  name: string;
+  role: string;
+  email: string;
+}
+
+interface CompanyHalf {
+  company_name: string;
+  company_logo: any;
 }
 
 interface Stats {
@@ -122,5 +135,5 @@ interface MainDashboardCard {
 interface MinorDashboardCard {
   className: string;
   title: string;
-  count: number;
+  count: number | string;
 }

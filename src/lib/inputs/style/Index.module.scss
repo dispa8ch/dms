@@ -185,9 +185,12 @@
     display: block;
     outline: none;
     border: none;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--text-color);
     cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .options {
@@ -210,6 +213,9 @@
       padding: 0.5rem 1rem;
       cursor: pointer;
       color: var(--text-color);
+      font-size: 0.8rem;
+      white-space: nowrap;
+
       &:hover {
         background: #f5f5f5;
       }

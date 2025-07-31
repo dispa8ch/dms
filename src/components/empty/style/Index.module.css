@@ -1,0 +1,25 @@
+.empty {
+  width: 100%;
+  min-height: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+.empty span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #ffe1e7;
+  width: 5rem;
+  height: 5rem;
+}
+.empty h2 {
+  font-size: 1.1rem;
+}
+.empty p {
+  font-size: 0.9rem;
+}/*# sourceMappingURL=Index.module.css.map */

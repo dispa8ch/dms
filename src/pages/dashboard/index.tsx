@@ -1,47 +1,66 @@
 import DashboardLayout from "@/layouts/DashboardLayout";
 import { DashboardAssets } from "@/lib/icons/dashboard_assets";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainCard from "./components/MainCard";
 import styles from "@/pages/dashboard/style/Index.module.css";
 import MinorCard from "./components/MinorCard";
 import Dispa8chChart from "@/lib/charts/Dispa8chChart";
 import DashboardSideBar from "./components/sidebar";
+import { useApiService } from "@/contexts/ApiServiceContext";
+import { apiRoutes } from "@/lib/apiRoutes";
+import Loading from "../loaders/Loading";
 
 function Dashboard() {
+  const api = useApiService();
+  const [overview, setOverview] = React.useState<DashboardData | null>(null);
+  const [loading, setLoading] = useState(false);
   const main_cards = [
     {
       title: "Total number of Orders",
-      count: 15000,
+      count: overview?.stats.total_orders ?? 0,
       icon: DashboardAssets.total_orders,
       className: "green",
     },
     {
       title: "Total number of Riders",
-      count: 15000,
+      count: overview?.stats.total_riders ?? 0,
       icon: DashboardAssets.total_riders,
       className: "orange",
     },
   ];
   const minor_cards = [
     {
-      title: "Total number of Orders",
-      count: 15000,
-      icon: DashboardAssets.total_orders,
+      title: "Today's Deliveries",
+      count: overview?.stats.total_sales ?? 0,
       className: "blue",
     },
     {
-      title: "Total number of Riders",
-      count: 15000,
-      icon: DashboardAssets.total_riders,
+      title: "Completed Deliveries",
+      count: overview?.stats.completed_deliveries ?? 0,
       className: "purple",
     },
     {
-      title: "Total number of Riders",
-      count: 15000,
-      icon: DashboardAssets.total_riders,
+      title: "Assigned Riders",
+      count: overview?.stats.assigned_riders ?? 0,
       className: "pinkish",
     },
   ];
+
+  useEffect(() => {
+    setLoading(true);
+    api
+      .get<DashboardData>(apiRoutes.company.overview)
+      .then((res) => {
+        setOverview(res.data);
+        localStorage.setItem(
+          "companyInfo",
+          JSON.stringify(res.data?.companyInfo)
+        );
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   const sampleData = [
     { date: "2025-07-01", value: 30 },
@@ -53,7 +72,9 @@ function Dashboard() {
     { date: "2024-01-05", value: 90 },
   ];
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <DashboardLayout pageTitle="Dashboard">
       <div className={styles.wrapper}>
         <div className={styles.right}>
@@ -70,10 +91,23 @@ function Dashboard() {
             </div>
           </div>
           <div>
-            <Dispa8chChart data={sampleData} />
+            <Dispa8chChart
+              data={
+                overview?.monthlySales.map((data) => {
+                  return {
+                    date: data.month,
+                    value: parseInt(data.total_sales),
+                  };
+                }) ?? []
+              }
+            />
           </div>
         </div>
-        <DashboardSideBar />
+        <DashboardSideBar
+          recent_orders={overview?.recentOrders ?? []}
+          in_transit={overview?.inTransitOrders ?? []}
+          new_order={overview?.newOrders ?? []}
+        />
       </div>
     </DashboardLayout>
   );

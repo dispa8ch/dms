@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "@/pages/auth/style/Index.module.css";
 import Dispa8chInput from "@/lib/inputs/Dispa8chInput";
 import { useRegister } from "@/contexts/RegisterContext";
@@ -67,12 +67,12 @@ function StepOne() {
         <Dispa8chInput
           label="Confirm password"
           type="password"
-          value={business?.user.user_password}
+          value={business.user.confirm_password}
           placeholder="Re-enter your password"
           onChange={(value) => {
             business?.setRegisterPayload((prev) => ({
               ...prev,
-              user: { ...prev.user, user_password: value as string },
+              user: { ...prev.user, confirm_password: value as string },
             }));
           }}
         />

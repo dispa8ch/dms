@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import RenderTab from "./util/RenderTab";
 import Dispa8chButton from "@/lib/buttons/Dispa8chButton";
 import { GeneralIcons } from "@/lib/icons/general";
+import SearchInput from "@/lib/search/SearchInput";
+import CreateModal from "./components/CreateModal";
 
 function Orders() {
   const [openCreate, setOpenCreate] = useState(false);
@@ -11,14 +13,26 @@ function Orders() {
     label: "",
     value: "all",
   });
+
   return (
     <DashboardLayout
       pageTitle="Orders"
       rightContent={
-        <div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
+          }}
+        >
+          <SearchInput placeholder="Search orders..." />
           <Dispa8chButton
             label="New Order"
             type="primary"
+            onClick={(e) => {
+              e?.preventDefault();
+              setOpenCreate(true);
+            }}
             icon={GeneralIcons.plus_filled_white}
             buttonStyle={{ fontSize: "0.9rem" }}
           />
@@ -53,6 +67,7 @@ function Orders() {
       >
         <RenderTab tab={currentTab.value} />
       </TabLayout>
+      <CreateModal open={openCreate} setOpen={setOpenCreate} />
     </DashboardLayout>
   );
 }

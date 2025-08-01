@@ -14,10 +14,58 @@ function Dispa8chInput({
   const [inputValue, setValue] = useState<string | number>(value ?? "");
   const [visible, setVisible] = useState(false);
 
-  function handleOnchange(e: React.ChangeEvent<HTMLInputElement>) {
-    const newValue = Util.removeWhitespace(e.target.value);
+  function handleOnchange(
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) {
+    let newValue = Util.removeWhitespace(e.target.value);
+
+    if (type === "currency") {
+      newValue = Util.formatCurrencyInput(newValue);
+      setValue(newValue);
+      onChange?.(newValue.replace(/,/g, ""));
+      return;
+    }
+
     setValue(newValue);
     onChange?.(newValue);
+  }
+
+  function allowOnlyNumbers(e: React.KeyboardEvent<HTMLInputElement>) {
+    const invalidKeys = ["e", "E", "+", "-", ".", ",", " "];
+    const allowedControlKeys = [
+      "Backspace",
+      "Tab",
+      "Delete",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+    ];
+
+    const isCtrlCombo = e.ctrlKey || e.metaKey; // Allow Ctrl+C, Ctrl+V, Cmd+C, etc.
+
+    if (
+      invalidKeys.includes(e.key) ||
+      (!/^\d$/.test(e.key) &&
+        !allowedControlKeys.includes(e.key) &&
+        !isCtrlCombo)
+    ) {
+      e.preventDefault();
+    }
+  }
+
+  function handlePaste(
+    e:
+      | React.ClipboardEvent<HTMLInputElement>
+      | React.ClipboardEvent<HTMLTextAreaElement>
+  ) {
+    const text = e.clipboardData.getData("text");
+    const isValid = type === "currency" ? /^[\d,.]+$/ : /^\d+$/;
+    if (!isValid.test(text)) {
+      e.preventDefault();
+    }
   }
 
   useEffect(() => {
@@ -72,6 +120,46 @@ function Dispa8chInput({
           <span onClick={() => setVisible(!visible)}>
             {visible ? GeneralIcons.eye_open : GeneralIcons.eye_close}
           </span>
+        </Wrapper>
+      ) : type === "number" ? (
+        <Wrapper label={label} required={required}>
+          <input
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            onKeyDown={allowOnlyNumbers}
+            placeholder={placeholder}
+            className={styles.input_normal}
+            onChange={handleOnchange}
+            value={inputValue}
+            onPaste={handlePaste}
+            autoComplete="text"
+          />
+        </Wrapper>
+      ) : type === "currency" ? (
+        <Wrapper label={label} required={required}>
+          <input
+            type="text"
+            inputMode="decimal"
+            pattern="[\d,]*"
+            placeholder={placeholder}
+            className={styles.input_normal}
+            onChange={handleOnchange}
+            value={inputValue}
+            onPaste={handlePaste}
+            autoComplete="off"
+          />
+        </Wrapper>
+      ) : type === "textarea" ? (
+        <Wrapper label={label} required={required}>
+          <textarea
+            placeholder={placeholder}
+            className={styles.text_area}
+            onChange={handleOnchange}
+            value={inputValue}
+            onPaste={handlePaste}
+            autoComplete="off"
+          ></textarea>
         </Wrapper>
       ) : null}
     </div>

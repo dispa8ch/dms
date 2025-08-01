@@ -1,5 +1,5 @@
 type Dispa8chButtonColor = "purple-main" | "black" | "grey" | "blue";
-type Dispa8chButtonType = "primary" | "secondary" | "outline" | "link";
+type Dispa8chButtonType = "primary" | "secondary" | "outline" | "link" | "text";
 
 interface Dispa8chButton {
   label: string;

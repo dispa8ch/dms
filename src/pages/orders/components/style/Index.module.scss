@@ -1,0 +1,32 @@
+.check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  .line {
+    border-right: 0.1rem solid #dfdfdf;
+    padding-right: 1rem;
+  }
+
+  .section {
+    margin-bottom: 1rem;
+    .div {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .extended {
+      display: grid;
+      grid-template-columns: 2.5fr 1.5fr 1fr;
+      gap: 1rem;
+    }
+  }
+}

@@ -62,16 +62,6 @@ function Dashboard() {
       });
   }, []);
 
-  const sampleData = [
-    { date: "2025-07-01", value: 30 },
-    { date: "2025-07-01", value: 50 },
-    { date: "2025-07-02", value: 40 },
-    { date: "2025-07-20", value: 70 },
-    { date: "2025-06-10", value: 100 },
-    { date: "2025-01-05", value: 150 },
-    { date: "2024-01-05", value: 90 },
-  ];
-
   return loading ? (
     <Loading />
   ) : (

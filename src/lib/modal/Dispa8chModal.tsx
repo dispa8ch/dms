@@ -10,10 +10,11 @@ function Dispa8chModal({
   actionButtonPayload,
   children,
   replaceBottom,
+  size = "medium",
 }: Dispa8chModal) {
   return (
-    <section className={`${styles.modal} ${visible ? styles.visible : ""}`}>
-      <div className={styles.modal_wrapper}>
+    <section className={`${styles.modal} ${visible ? styles.visible : ""} `}>
+      <div className={`${styles.modal_wrapper} ${styles[size]}`}>
         <div className={styles.head}>
           <h4>{title}</h4>
           <button onClick={onClose}>{GeneralIcons.close}</button>

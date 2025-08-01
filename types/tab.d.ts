@@ -14,4 +14,5 @@ interface Tab {
   label: string;
   value: string;
   icon?: React.ReactNode;
+  receipt?: number;
 }

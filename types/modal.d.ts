@@ -16,6 +16,7 @@ interface Dispa8chModal {
   visible: boolean;
   children: React.ReactNode;
   replaceBottom?: React.ReactNode;
+  size?: "large" | "medium" | "small";
   actionButtonPayload?: {
     icon?: React.ReactNode;
     label: string;

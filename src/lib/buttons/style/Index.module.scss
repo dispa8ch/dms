@@ -3,10 +3,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 1rem;
   width: fit-content;
   border: 0.6px solid transparent;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 0.9rem;
   cursor: pointer;
 
   &:hover {
@@ -39,12 +40,24 @@
   &.text {
     background: transparent;
     padding: 0.5rem 0;
-    color: #d1193e;
+    color: var(--primary-color);
+
+    svg {
+      path {
+        fill: var(--primary-color);
+      }
+    }
 
     &.disabled {
       filter: brightness(0.8);
       cursor: not-allowed;
       color: #757575;
+
+      svg {
+        path {
+          fill: #757575;
+        }
+      }
     }
   }
 

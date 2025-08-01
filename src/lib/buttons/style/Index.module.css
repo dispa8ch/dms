@@ -3,11 +3,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 1rem;
   width: -moz-fit-content;
   width: fit-content;
   border: 0.6px solid transparent;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 0.9rem;
   cursor: pointer;
 }
 .button:hover {
@@ -35,12 +36,18 @@
 .button.text {
   background: transparent;
   padding: 0.5rem 0;
-  color: #d1193e;
+  color: var(--primary-color);
+}
+.button.text svg path {
+  fill: var(--primary-color);
 }
 .button.text.disabled {
   filter: brightness(0.8);
   cursor: not-allowed;
   color: #757575;
+}
+.button.text.disabled svg path {
+  fill: #757575;
 }
 .button.small {
   padding: 0.3rem 0.3rem;

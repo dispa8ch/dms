@@ -7,7 +7,8 @@ interface Dispa8chInput {
     | "number"
     | "select"
     | "textarea"
-    | "phone";
+    | "phone"
+    | "currency";
   placeholder?: string;
   required?: boolean;
   icon?: React.ReactNode;
@@ -121,4 +122,14 @@ interface SearchInput {
   icon?: React.ReactNode;
   label?: string;
   width?: number;
+}
+
+interface Dispa8chCheckbox {
+  id: string;
+  checked?: boolean;
+  defaultChecked?: boolean;
+  onChange?: (checked: boolean) => void;
+  label?: string;
+  disabled?: boolean;
+  className?: string;
 }

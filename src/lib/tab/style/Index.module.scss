@@ -70,7 +70,7 @@
     }
 
     &::-webkit-scrollbar-thumb:hover {
-      background: #a71def;
+      background: var(--primary-color);
     }
   }
 }

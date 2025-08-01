@@ -121,6 +121,20 @@
   padding: 2rem;
   height: 100%;
   overflow: auto;
+  /* For WebKit browsers like Chrome, Edge, Safari */
+}
+.app_layout .dashboard_layout::-webkit-scrollbar {
+  width: 4px;
+}
+.app_layout .dashboard_layout::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+.app_layout .dashboard_layout::-webkit-scrollbar-thumb {
+  background: #d8d8d8; /* You can change this to match your theme */
+  border-radius: 6px;
+}
+.app_layout .dashboard_layout::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
 }
 .app_layout .dashboard_layout .top_bar {
   display: flex;
@@ -129,7 +143,5 @@
   margin-bottom: 1rem;
 }
 .app_layout .dashboard_layout .top_bar .right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  flex-shrink: 0;
 }/*# sourceMappingURL=Index.module.css.map */

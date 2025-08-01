@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "@/lib/tab/style/Index.module.css";
-import SearchInput from "../search/SearchInput";
-import PlaySelect from "../select/PlaySelect";
-import PlayFilter from "../filter/PlayFilter";
-
 function TabLayout({ tabs, children, onTabChange, defaultTab }: TabLayout) {
   const [activeTab, setActiveTab] = useState<Tab>(
     defaultTab ? tabs.find((t) => t.label === defaultTab) ?? tabs[0] : tabs[0]
@@ -25,6 +21,7 @@ function TabLayout({ tabs, children, onTabChange, defaultTab }: TabLayout) {
             >
               {tab.icon && <span className="tab-icon">{tab.icon}</span>}
               <span className="tab-label">{tab.label}</span>
+              {tab.receipt && <span>{tab.receipt}</span>}
             </button>
           ))}
         </div>

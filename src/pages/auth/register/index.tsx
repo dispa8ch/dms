@@ -61,7 +61,7 @@ function Register() {
 
           {step === 2 ? (
             <Dispa8chButton
-              style={{ width: "100%", height: "3rem", marginTop: "2rem" }}
+              buttonStyle={{ width: "100%", height: "3rem", marginTop: "2rem" }}
               label="Create your account"
               disabled={
                 !Util.isAllValid([
@@ -74,10 +74,10 @@ function Register() {
               }
               loading={loading}
               onClick={(e) => {
-                e.preventDefault();
+                e?.preventDefault();
                 handleSubmit();
               }}
-              variant="primary"
+              type="primary"
             />
           ) : (
             <div
@@ -92,17 +92,19 @@ function Register() {
               <Dispa8chButton
                 label="Next"
                 icon={GeneralIcons.arrow_right_long}
-                variant="text"
+                type="text"
                 disabled={
                   !Util.isAllValid([
                     business.user.first_name,
                     business.user.last_name,
                     business.user.user_email,
                     business.user.user_password,
-                  ])
+                    business.user.confirm_password,
+                  ]) ||
+                  business.user.user_password !== business.user.confirm_password
                 }
                 onClick={(e) => {
-                  e.preventDefault();
+                  e?.preventDefault();
                   setStep((prev) => (prev === 2 ? 2 : prev + 1));
                 }}
               />

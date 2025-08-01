@@ -9,7 +9,7 @@ function SearchInput({
 }: SearchInput) {
   return (
     <div className={styles.search} style={{ width: `${width}%` }}>
-      {/* <span>{GeneralIcons.search_icon}</span> */}
+      <span>{GeneralIcons.search}</span>
       <input type={"search"} placeholder={placeholder} />
     </div>
   );

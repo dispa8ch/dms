@@ -149,4 +149,13 @@ export default class Util {
 
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
   }
+
+  static formatCurrencyInput(value: string): string {
+    const numeric = value.replace(/[^\d.]/g, "");
+    const [intPart, decimal] = numeric.split(".");
+    const intFormatted = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return decimal !== undefined
+      ? `${intFormatted}.${decimal.slice(0, 2)}`
+      : intFormatted;
+  }
 }

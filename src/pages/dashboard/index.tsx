@@ -57,6 +57,9 @@ function Dashboard() {
           JSON.stringify(res.data?.companyInfo)
         );
       })
+      .catch((err) => {
+        console.log(err);
+      })
       .finally(() => {
         setLoading(false);
       });

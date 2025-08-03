@@ -22,5 +22,11 @@ interface Dispa8chModal {
     label: string;
     action: () => void;
     disabled?: boolean;
+    loading?: boolean;
   };
+}
+
+interface Modal {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }

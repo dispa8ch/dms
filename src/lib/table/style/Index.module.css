@@ -1,5 +1,4 @@
 .tableWrapper {
-  overflow-x: auto;
   width: 100%;
 }
 .tableWrapper .head {
@@ -39,7 +38,7 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
-  table-layout: fixed;
+  table-layout: auto;
   position: relative;
 }
 .table th,
@@ -48,8 +47,8 @@
   text-align: left;
   color: var(--text-color);
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
+  position: relative;
 }
 .table tr {
   border-left: 0.1rem solid #e5e7eb;
@@ -67,6 +66,7 @@
   position: sticky;
   top: 0;
   left: 0;
+  z-index: 10;
 }
 
 .collapsed {

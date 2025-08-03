@@ -14,3 +14,19 @@ interface Dispa8chButton {
   size?: "small" | "medium" | "large";
   buttonStyle?: React.CSSProperties;
 }
+
+interface Dispa8chToggleButton {
+  value?: boolean;
+  defaultValue?: boolean;
+  onToggle?: (value: boolean) => void;
+  disabled?: boolean;
+  label?: string;
+  onLabel?: string;
+  offLabel?: string;
+  iconOn?: React.ReactNode;
+  iconOff?: React.ReactNode;
+  className?: string;
+  size?: "sm" | "md" | "lg";
+  id?: string;
+  loading?: boolean; // Spinner when toggling
+}

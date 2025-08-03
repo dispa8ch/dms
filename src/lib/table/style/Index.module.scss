@@ -1,5 +1,5 @@
 .tableWrapper {
-  overflow-x: auto;
+  // overflow-x: auto;
   width: 100%;
 
   .head {
@@ -45,8 +45,9 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
-  table-layout: fixed;
+  table-layout: auto;
   position: relative;
+  // overflow: hidden;
 
   th,
   td {
@@ -54,8 +55,9 @@
     text-align: left;
     color: var(--text-color);
     white-space: nowrap;
-    overflow: hidden;
+    // overflow-x: hidden;
     text-overflow: ellipsis;
+    position: relative;
   }
 
   tr {
@@ -76,6 +78,7 @@
     position: sticky;
     top: 0;
     left: 0;
+    z-index: 10;
   }
 }
 

@@ -27,6 +27,10 @@ export const apiRoutes = {
     fetchAll: `${API_BASES.order}/api/orders`,
     fetchByParams: (query: string, page: number = 1, limit: number = 20) =>
       `${API_BASES.order}/api/orders?${query}&page=${page}&limit=${limit}`,
+    search: (query: string, page: number = 1, limit: number = 20) =>
+      `${API_BASES.order}/api/orders/search?q=${query}&page=${page}&limit=${limit}`,
+    filter: (status: string, page: number = 1, limit: number = 20) =>
+      `${API_BASES.order}/api/orders/filter?status=${status}&page=${page}&limit=${limit}`,
   },
   rider: {
     create: `${API_BASES.rider}/api/riders`,

@@ -80,7 +80,6 @@ export const ApiServiceProvider: React.FC<{ children: React.ReactNode }> = ({
 
     put: <T,>(url: string, data?: any) =>
       withTimeout<T>((signal) => {
-        const controller = new AbortController();
         return fetch(url, {
           method: "PUT",
           body: JSON.stringify(data),
@@ -94,7 +93,6 @@ export const ApiServiceProvider: React.FC<{ children: React.ReactNode }> = ({
 
     del: <T,>(url: string) =>
       withTimeout<T>((signal) => {
-        const controller = new AbortController();
         return fetch(url, {
           method: "DELETE",
           headers: {

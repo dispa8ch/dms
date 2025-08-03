@@ -51,7 +51,23 @@ interface Dispa8chDropDown {
   label?: string;
   options: Dispa8chDropDownOption[];
   value?: string;
-  onChange: (value: Dispa8chDropDownOption) => void;
+  onChange?: (value: Dispa8chDropDownOption) => void;
+  required?: boolean;
+  error?: string;
+  disabled?: boolean;
+  className?: string;
+  name?: string;
+  id?: string;
+  placeholder?: string;
+  loading?: boolean;
+  type?: "large" | "small";
+}
+
+interface Dispa8chActionDrop {
+  label?: string;
+  options: Dispa8chDropDownOption[];
+  value?: string;
+  onChange?: (value: Dispa8chDropDownOption) => void;
   required?: boolean;
   error?: string;
   disabled?: boolean;
@@ -65,6 +81,7 @@ interface Dispa8chDropDown {
 interface Dispa8chDropDownOption {
   value: string;
   label: string;
+  action?: () => void;
   extra?: any; // Optional extra data
 }
 
@@ -132,4 +149,13 @@ interface Dispa8chCheckbox {
   label?: string;
   disabled?: boolean;
   className?: string;
+}
+
+interface Dispa8chDateInput {
+  label?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+  name?: string;
+  required?: boolean;
+  withTime?: boolean;
 }

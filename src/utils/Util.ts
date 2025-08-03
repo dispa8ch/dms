@@ -94,7 +94,8 @@ export default class Util {
   ): string {
     return new Intl.NumberFormat(locale, {
       style: "currency",
-      currency: currency,
+      currency: currency.toUpperCase(),
+      currencySign: "standard",
     }).format(value);
   }
 
@@ -157,5 +158,26 @@ export default class Util {
     return decimal !== undefined
       ? `${intFormatted}.${decimal.slice(0, 2)}`
       : intFormatted;
+  }
+
+  static extractDateTime(datetime: string) {
+    const dateObj = new Date(datetime);
+    console.log(dateObj);
+
+    if (isNaN(dateObj.getTime())) {
+      throw new Error("Invalid date string");
+    }
+
+    const date = dateObj.toISOString().split("T")[0]; // "2025-08-02"
+
+    let hours = dateObj.getHours();
+    const minutes = dateObj.getMinutes().toString().padStart(2, "0");
+    const ampm = hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12 || 12; // convert to 12-hour format
+
+    const time = `${hours}:${minutes} ${ampm}`; // e.g., "7:57 PM"
+
+    return { date, time };
   }
 }

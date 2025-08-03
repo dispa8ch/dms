@@ -30,8 +30,7 @@ export const ApiServiceProvider: React.FC<{ children: React.ReactNode }> = ({
     const json = await res.json();
 
     if (!res.ok) {
-      if (res.status === 401 || res.status === 403) {
-        showToast(json.message || "Session expired.", "error");
+      if (res.status === 403) {
         setShowSessionModal(true);
         setTimeout(() => logout(), 10000);
       } else {
@@ -43,41 +42,65 @@ export const ApiServiceProvider: React.FC<{ children: React.ReactNode }> = ({
     return json;
   };
 
+  const withTimeout = <T,>(
+    fetchFn: (signal: AbortSignal) => Promise<Response>,
+    timeoutMs = 30000
+  ): Promise<BaseResponse<T>> => {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+    return fetchFn(controller.signal)
+      .then((res) => handleResponse<T>(res))
+      .finally(() => clearTimeout(timeout));
+  };
+
   const api = {
     get: <T,>(url: string) =>
-      fetch(url, {
-        headers: {
-          ...getAuthHeader(),
-        },
-      } as RequestInit).then((res) => handleResponse<T>(res)),
+      withTimeout<T>((signal) =>
+        fetch(url, {
+          headers: {
+            ...(getAuthHeader() as HeadersInit),
+          },
+          signal,
+        })
+      ),
 
     post: <T,>(url: string, data?: any) =>
-      fetch(url, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-          ...getAuthHeader(),
-        },
-      } as RequestInit).then((res) => handleResponse<T>(res)),
+      withTimeout<T>((signal) =>
+        fetch(url, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+            ...getAuthHeader(),
+          } as HeadersInit,
+          signal,
+        })
+      ),
 
     put: <T,>(url: string, data?: any) =>
-      fetch(url, {
-        method: "PUT",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-          ...getAuthHeader(),
-        },
-      } as RequestInit).then((res) => handleResponse<T>(res)),
+      withTimeout<T>((signal) => {
+        return fetch(url, {
+          method: "PUT",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+            ...getAuthHeader(),
+          } as HeadersInit,
+          signal,
+        });
+      }),
 
     del: <T,>(url: string) =>
-      fetch(url, {
-        method: "DELETE",
-        headers: {
-          ...getAuthHeader(),
-        },
-      } as RequestInit).then((res) => handleResponse<T>(res)),
+      withTimeout<T>((signal) => {
+        return fetch(url, {
+          method: "DELETE",
+          headers: {
+            ...getAuthHeader(),
+          } as HeadersInit,
+          signal,
+        });
+      }),
   };
 
   return (

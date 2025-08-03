@@ -17,7 +17,7 @@ function Dispa8chModal({
       <div className={`${styles.modal_wrapper} ${styles[size]}`}>
         <div className={styles.head}>
           <h4>{title}</h4>
-          <button onClick={onClose}>{GeneralIcons.close}</button>
+          <button onClick={onClose}>{GeneralIcons.close_white}</button>
         </div>
         <div className={styles.children}>{children}</div>
         {replaceBottom ?? null}
@@ -30,6 +30,7 @@ function Dispa8chModal({
               label={actionButtonPayload.label}
               icon={actionButtonPayload.icon}
               disabled={actionButtonPayload.disabled}
+              loading={actionButtonPayload.loading}
             />
           </div>
         )}

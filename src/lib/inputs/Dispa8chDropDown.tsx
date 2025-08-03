@@ -13,11 +13,12 @@ function Dispa8chDropDown({
   name,
   required,
   value,
-}: Dispa8chSelect) {
+  type = "small",
+}: Dispa8chDropDown) {
   const [selectedValue, setSelectedValue] =
     React.useState<Dispa8chDropDownOption>({
       label: "",
-      value: "",
+      value: value || "",
     });
   const [open, setOpen] = useState<boolean>(false);
   useEffect(() => {
@@ -32,12 +33,20 @@ function Dispa8chDropDown({
   }, [value]);
   return (
     <div
-      className={`${styles.drop} ${className || ""}`}
+      className={`${styles.drop} ${className || ""} ${
+        type === "large" ? styles.large : ""
+      }`}
       onClick={(e) => {
         e.stopPropagation();
         setOpen((prev) => !prev);
       }}
     >
+      {label && (
+        <label>
+          {label}
+          {required && <span>*</span>}
+        </label>
+      )}
       <span className={styles.value}>{selectedValue.label}</span>
 
       {open && (

@@ -169,58 +169,119 @@
   height: 1.5rem;
 }
 
-.drop {
+.action_drop {
   position: relative;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 2.5rem;
+  height: 1.7rem;
   border: 1px solid #757575;
   border-radius: 5px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   outline: none;
+}
+.action_drop .options {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 6rem;
+  background: var(--card-bg);
+  border-radius: 0.5rem;
+  z-index: 1000;
+  box-shadow: 0 1rem 1rem rgba(100, 100, 100, 0.1);
+}
+.action_drop .options .option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.action_drop .options .option svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.action_drop .options .option span {
+  color: var(--text-color);
+}
+.action_drop .options .option:hover {
+  background: #f5f5f5;
+}
+
+.drop {
+  position: relative;
   padding: 0.2rem 0.5rem;
+  border: 1px solid #757575;
+  border-radius: 5px;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 0.5rem;
+  outline: none;
+  cursor: pointer;
+}
+.drop label {
+  position: absolute;
+  top: -20%;
+  font-size: 0.8rem;
+  background: var(--card-bg);
+  padding: 0.1rem;
+}
+.drop label span {
+  color: #d1193e;
+}
+.drop.large {
+  width: 100%;
+  padding: 1rem;
+}
+.drop.large .options {
+  width: 100%;
+}
+.drop .value {
+  color: var(--text-color);
+  font-size: 0.9rem;
 }
 .drop .drop_icon {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.drop .value {
-  background: none;
-  display: block;
-  outline: none;
-  border: none;
-  font-size: 0.8rem;
-  color: var(--text-color);
-  cursor: pointer;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 .drop .options {
   position: absolute;
   top: 100%;
   right: 0;
-  min-width: 5rem;
-  max-height: 15rem;
-  overflow: auto;
+  min-width: 6rem;
   background: var(--card-bg);
   border-radius: 0.5rem;
-  font-size: 0.9rem;
-  z-index: 999;
+  z-index: 1000;
   box-shadow: 0 1rem 1rem rgba(100, 100, 100, 0.1);
 }
 .drop .options .option {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
   color: var(--text-color);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   white-space: nowrap;
+}
+.drop .options .option svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.drop .options .option span {
+  color: var(--text-color);
 }
 .drop .options .option:hover {
   background: #f5f5f5;
@@ -277,4 +338,59 @@
 .checkbox_wrapper .checkbox_label {
   font-size: 0.9rem;
   color: var(--text-color);
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border: 1px solid #757575;
+  position: relative;
+  border-radius: 5px;
+}
+.date:focus-within {
+  border-color: #d1193e;
+}
+.date span {
+  color: red;
+}
+.date .label {
+  position: absolute;
+  top: -20%;
+  left: 1rem;
+  background: var(--card-bg);
+  padding: 0 0.2rem;
+  display: block;
+  font-size: 0.8rem;
+}
+.date .inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.date .input {
+  background: none;
+  height: 3rem;
+  display: block;
+  width: 100%;
+  outline: none;
+  padding: 0 1rem;
+  border: none;
+  font-size: 0.9rem;
+}
+.date .input:hover {
+  border-color: #999;
+}
+.date .input:focus {
+  border-color: var(--primary-color);
+}
+.date .input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+}
+.date .calendarIcon {
+  position: absolute;
+  right: 1rem;
+  pointer-events: none;
 }/*# sourceMappingURL=Index.module.css.map */

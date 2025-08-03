@@ -9,13 +9,19 @@ import React, { useEffect, useState } from "react";
 import styles from "@/pages/orders/components/style/Index.module.css";
 import Loading from "@/pages/loaders/Loading";
 import { formatStatus } from "@/utils/formatter";
+import Dispa8chDropDown from "@/lib/inputs/Dispa8chDropDown";
+import { GeneralIcons } from "@/lib/icons/general";
+import { DropDownIcons } from "@/lib/icons/drop_down_icons";
+import { useFetch } from "@/hooks/useFetch";
+import CreateModal from "./CreateModal";
+import Dispa8chActionDrop from "@/lib/inputs/Dispa8chActionDrop";
 
 function All() {
-  const api = useApiService();
+  const { data, loading, refetch } = useFetch<Order[]>(
+    apiRoutes.order.fetchAll,
+    []
+  );
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [loading, setLoading] = useState(false);
-
   const isChecked = (id: string) => selectedIds.has(id);
 
   const toggleCheckbox = (id: string, checked: boolean) => {
@@ -26,36 +32,21 @@ function All() {
     });
   };
 
-  const allSelected = orders.every((item) => selectedIds.has(item.id));
+  const allSelected = data.every((item) => selectedIds.has(item.id));
 
   const toggleAll = () => {
     if (allSelected) {
       setSelectedIds(new Set()); // uncheck all
     } else {
-      setSelectedIds(new Set(orders.map((item) => item.id))); // check all
+      setSelectedIds(new Set(data.map((item) => item.id))); // check all
     }
   };
-
-  useEffect(() => {
-    setLoading(true);
-    api
-      .get<Order[]>(apiRoutes.order.fetchAll)
-      .then((res) => {
-        setOrders(res.data || []);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch orders:", error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
 
   return loading ? (
     <Loading />
   ) : (
     <section>
-      {Util.isEmpty(orders) ? (
+      {Util.isEmpty(data) ? (
         <EmptyScreen />
       ) : (
         <Dispa8chTable
@@ -76,7 +67,7 @@ function All() {
             "Action",
           ]}
         >
-          {orders.map((o, i) => (
+          {data.map((o, i) => (
             <Dispa8chTableRow
               key={i}
               one={
@@ -94,11 +85,41 @@ function All() {
               four={o.delivery_address}
               five={Util.formatCurrency(Number(o.delivery_fees), "ngn")}
               six={formatStatus(o.order_status)}
-              seven={<div></div>}
+              seven={
+                <Dispa8chActionDrop
+                  options={[
+                    {
+                      label: "View Details",
+                      value: "view-details",
+                      extra: DropDownIcons.eye,
+                      action: () => {},
+                    },
+                    {
+                      label: "Assign Rider",
+                      value: "view-details",
+                      extra: DropDownIcons.user_plus,
+                      action: () => {},
+                    },
+                    {
+                      label: "Edit Order",
+                      value: "view-details",
+                      extra: DropDownIcons.pen,
+                      action: () => {},
+                    },
+                    {
+                      label: "Cancel Order",
+                      value: "view-details",
+                      extra: DropDownIcons.cancel_circle,
+                      action: () => {},
+                    },
+                  ]}
+                />
+              }
             />
           ))}
         </Dispa8chTable>
       )}
+      <CreateModal refetch={refetch} />
     </section>
   );
 }

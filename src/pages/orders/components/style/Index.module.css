@@ -26,4 +26,45 @@
   display: grid;
   grid-template-columns: 2.5fr 1.5fr 1fr;
   gap: 1rem;
+}
+
+.items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 0.1rem solid #e5e7eb;
+}
+.items li p {
+  color: var(--title-color);
+  font-size: 1rem;
+  font-weight: 500;
+}
+.items li .left {
+  width: 100%;
+}
+.items li .left div {
+  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+.items li .left div span {
+  display: block;
+  color: var(--title-color);
+  font-size: 0.8rem;
+}
+.items li .left div small {
+  display: block;
+}
+.items .total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+.items .total b {
+  color: var(--title-color);
+  font-weight: 600;
 }/*# sourceMappingURL=Index.module.css.map */

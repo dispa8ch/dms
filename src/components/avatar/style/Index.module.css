@@ -1,3 +1,14 @@
+.with_value {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.with_value p {
+  font-weight: 500;
+}
+
 .avatar {
   display: flex;
   align-items: center;

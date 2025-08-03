@@ -80,4 +80,65 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.toggle {
+  width: 3.5rem;
+  display: flex;
+  align-items: center;
+  background-color: #eeeeee;
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.toggle .icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: #fff;
+  transition: 0.2s linear;
+  transform: translateX(0);
+}
+.toggle .icon.loading {
+  background: none;
+  border: 0.2rem solid transparent;
+  border-top-color: #d1193e;
+  border-left-color: #d1193e;
+  border-bottom-color: #d1193e;
+  animation: load 1s linear infinite;
+}
+@keyframes load {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.toggle.active {
+  background-color: #d1193e;
+  color: #fff;
+}
+.toggle.active .icon {
+  transform: translateX(150%);
+}
+.toggle.active .icon.loading {
+  border-top-color: #fff;
+  border-left-color: #fff;
+  border-bottom-color: #fff;
+}
+.toggle.disabled {
+  background-color: #e5e5e5;
+  border-color: #eeeeee;
+  color: #888;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.toggle .label {
+  white-space: nowrap;
 }/*# sourceMappingURL=Index.module.css.map */

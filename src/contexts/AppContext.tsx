@@ -5,6 +5,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { useToast } from "./ToastContext";
 
 type Theme = "light" | "dark" | "system";
 
@@ -13,6 +14,7 @@ interface App {
   app_name: string;
   getTheme: () => Theme;
   updateTheme: (newTheme: Theme) => void;
+  isOnline: boolean;
 }
 
 export const AppContext = createContext<App>({
@@ -22,13 +24,16 @@ export const AppContext = createContext<App>({
   updateTheme: () => {
     throw Error("Must be used inside the App");
   },
+  isOnline: navigator.onLine,
 });
 
 function AppProvider({ children }: { children: ReactNode }) {
+  const { showToast } = useToast();
   const app_name = JSON.parse(localStorage.getItem("company_data") ?? "{}")
     .app_name as string;
 
   const [theme, setTheme] = useState<Theme>("light");
+  const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
 
   useEffect(() => {
     const savedTheme = (localStorage.getItem("theme") || "system") as Theme;
@@ -39,10 +44,29 @@ function AppProvider({ children }: { children: ReactNode }) {
       const mq = window.matchMedia("(prefers-color-scheme: dark)");
       const handler = () => applyTheme("system");
       mq.addEventListener("change", handler);
-
       return () => mq.removeEventListener("change", handler);
     }
   }, []);
+
+  useEffect(() => {
+    const handleOnline = () => {
+      setIsOnline(true);
+      showToast("You're back online!", "info");
+    };
+
+    const handleOffline = () => {
+      setIsOnline(false);
+      showToast("You've gone offline!", "error");
+    };
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, [showToast]);
 
   const applyTheme = (themeValue: Theme) => {
     const html = document.documentElement;
@@ -68,7 +92,9 @@ function AppProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AppContext.Provider value={{ updateTheme, app_name, theme, getTheme }}>
+    <AppContext.Provider
+      value={{ updateTheme, app_name, theme, getTheme, isOnline }}
+    >
       {children}
     </AppContext.Provider>
   );

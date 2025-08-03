@@ -43,7 +43,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
   cursor: pointer;
+  background: var(--primary-color);
+  border-radius: 0.2rem;
+}
+.modal .modal_wrapper .head button svg {
+  width: 1rem;
+  height: 1rem;
 }
 .modal .modal_wrapper .children {
   margin: 0.3rem 0;

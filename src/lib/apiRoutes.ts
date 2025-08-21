@@ -33,7 +33,7 @@ export const apiRoutes = {
       `${API_BASES.order}/api/orders/filter?status=${status}&page=${page}&limit=${limit}`,
   },
   rider: {
-    create: `${API_BASES.rider}/api/riders`,
+    create: `${API_BASES.auth}/auth/register/rider`,
     fetchByEmail: (email: string) =>
       `${API_BASES.rider}/api/riders/email/${email}`,
     fetchById: (id: string) => `${API_BASES.rider}/api/riders/${id}`,

@@ -5,10 +5,10 @@ import RenderTab from "./util/RenderTab";
 import Dispa8chButton from "@/lib/buttons/Dispa8chButton";
 import { GeneralIcons } from "@/lib/icons/general";
 import SearchInput from "@/lib/search/SearchInput";
-import CreateModal from "./components/CreateModal";
+import { useModal } from "@/hooks/useModal";
 
 function Riders() {
-  const [openCreate, setOpenCreate] = useState(false);
+  const { setOpen } = useModal();
   const [currentTab, setCurrentTab] = useState<Tab>({
     label: "",
     value: "rider-list",
@@ -25,13 +25,13 @@ function Riders() {
             gap: "1rem",
           }}
         >
-          <SearchInput placeholder="Search orders..." />
+          <SearchInput placeholder="Search riders..." />
           <Dispa8chButton
             label="New Driver"
             type="primary"
             onClick={(e) => {
               e?.preventDefault();
-              setOpenCreate(true);
+              setOpen(true);
             }}
             icon={GeneralIcons.plus_filled_white}
             buttonStyle={{ fontSize: "0.9rem" }}
@@ -55,11 +55,6 @@ function Riders() {
       >
         <RenderTab tab={currentTab.value} />
       </TabLayout>
-      <CreateModal
-        open={openCreate}
-        setOpen={setOpenCreate}
-        refetch={() => {}}
-      />
     </DashboardLayout>
   );
 }

@@ -14,6 +14,7 @@ import { GeneralIcons } from "@/lib/icons/general";
 import { DropDownIcons } from "@/lib/icons/drop_down_icons";
 import { useFetch } from "@/hooks/useFetch";
 import Dispa8chActionDrop from "@/lib/inputs/Dispa8chActionDrop";
+import CreateModal from "./CreateModal";
 
 function RiderList() {
   const { data, loading, refetch } = useFetch<Order[]>(
@@ -103,6 +104,7 @@ function RiderList() {
           ))}
         </Dispa8chTable>
       )}
+      <CreateModal refetch={refetch} />
     </section>
   );
 }

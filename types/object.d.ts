@@ -137,3 +137,9 @@ interface MinorDashboardCard {
   title: string;
   count: number | string;
 }
+
+type Options = {
+  length?: number; // total length
+  includeSymbols?: boolean; // include symbols set
+  avoidAmbiguous?: boolean; // exclude: 0 O o 1 l I etc.
+};

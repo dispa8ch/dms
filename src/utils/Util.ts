@@ -180,4 +180,65 @@ export default class Util {
 
     return { date, time };
   }
+
+  static generateTempPassword({
+    length = 12,
+    includeSymbols = true,
+    avoidAmbiguous = true,
+  }: Options = {}): string {
+    if (length < 8) throw new Error("Password length should be >= 8");
+
+    // Secure RNG (browser + Node)
+    const cryptoObj: Crypto =
+      (globalThis as any).crypto ?? require("crypto").webcrypto;
+
+    const sets = {
+      lower: "abcdefghijklmnopqrstuvwxyz",
+      upper: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      digit: "0123456789",
+      symbol: "!@#$%^&*()-_=+[]{};:,.?/|~",
+      ambiguous: "0OolI1",
+    };
+
+    const dropAmbiguous = (s: string) =>
+      avoidAmbiguous
+        ? [...s].filter((ch) => !sets.ambiguous.includes(ch)).join("")
+        : s;
+
+    const LOWER = dropAmbiguous(sets.lower);
+    const UPPER = dropAmbiguous(sets.upper);
+    const DIGIT = dropAmbiguous(sets.digit);
+    const SYMBOL = includeSymbols ? dropAmbiguous(sets.symbol) : "";
+
+    const requiredSets = [LOWER, UPPER, DIGIT].concat(SYMBOL ? [SYMBOL] : []);
+    const pool = requiredSets.join("");
+    if (!pool) throw new Error("Character pool is empty");
+
+    // Helpers
+    const randIndex = (max: number) => {
+      const buf = new Uint32Array(1);
+      cryptoObj.getRandomValues(buf);
+      // use modulo bias safely by rejecting values above highest multiple
+      const limit = Math.floor(0xffffffff / max) * max;
+      let r = buf[0];
+      if (r >= limit) return randIndex(max);
+      return r % max;
+    };
+
+    const pick = (s: string) => s[randIndex(s.length)];
+
+    // Ensure at least one from each required set
+    const chars: string[] = requiredSets.map((set) => pick(set));
+
+    // Fill remaining
+    while (chars.length < length) chars.push(pick(pool));
+
+    // Shuffle (Fisher–Yates) with secure RNG
+    for (let i = chars.length - 1; i > 0; i--) {
+      const j = randIndex(i + 1);
+      [chars[i], chars[j]] = [chars[j], chars[i]];
+    }
+
+    return chars.join("");
+  }
 }

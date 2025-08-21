@@ -10,6 +10,7 @@ function Dispa8chInput({
   required,
   onChange,
   value,
+  disabled,
 }: Dispa8chInput) {
   const [inputValue, setValue] = useState<string | number>(value ?? "");
   const [visible, setVisible] = useState(false);
@@ -83,6 +84,7 @@ function Dispa8chInput({
             onChange={handleOnchange}
             value={inputValue}
             autoComplete="text"
+            disabled={disabled}
           />
         </Wrapper>
       ) : type === "email" ? (
@@ -94,6 +96,7 @@ function Dispa8chInput({
             onChange={handleOnchange}
             value={inputValue}
             autoComplete="email"
+            disabled={disabled}
           />
         </Wrapper>
       ) : type === "phone" ? (
@@ -106,6 +109,7 @@ function Dispa8chInput({
             onChange={handleOnchange}
             value={inputValue}
             autoComplete="phone"
+            disabled={disabled}
           />
         </Wrapper>
       ) : type === "password" ? (
@@ -116,6 +120,7 @@ function Dispa8chInput({
             placeholder={placeholder}
             onChange={handleOnchange}
             value={inputValue}
+            disabled={disabled}
           />
           <span onClick={() => setVisible(!visible)}>
             {visible ? GeneralIcons.eye_open : GeneralIcons.eye_close}
@@ -134,6 +139,7 @@ function Dispa8chInput({
             value={inputValue}
             onPaste={handlePaste}
             autoComplete="text"
+            disabled={disabled}
           />
         </Wrapper>
       ) : type === "currency" ? (
@@ -148,6 +154,7 @@ function Dispa8chInput({
             value={inputValue}
             onPaste={handlePaste}
             autoComplete="off"
+            disabled={disabled}
           />
         </Wrapper>
       ) : type === "textarea" ? (
@@ -159,6 +166,7 @@ function Dispa8chInput({
             value={inputValue}
             onPaste={handlePaste}
             autoComplete="off"
+            disabled={disabled}
           ></textarea>
         </Wrapper>
       ) : null}

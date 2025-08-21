@@ -110,7 +110,9 @@ function CreateModal({ refetch }: { refetch: () => void }) {
         .catch((err) => {
           if (err.name === "AbortError") {
             console.error("Request was aborted due to timeout.");
+            showToast("Request was aborted due to timeout.", "error");
           } else {
+            showToast("Unexpected error occured.", "error");
             console.error("API Error:", err);
           }
         })

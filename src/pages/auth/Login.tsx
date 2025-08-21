@@ -8,9 +8,11 @@ import Dispa8chButton from "@/lib/buttons/Dispa8chButton";
 import Util from "@/utils/Util";
 import { useApiService } from "@/contexts/ApiServiceContext";
 import { apiRoutes } from "@/lib/apiRoutes";
+import { useToast } from "@/contexts/ToastContext";
 
 function Login() {
   const navigate = useNavigate();
+  const { showToast } = useToast();
   const api = useApiService();
   const [credentials, setCredentials] = useState<LoginRequest>({
     email: "",
@@ -31,6 +33,7 @@ function Login() {
         user_email: credentials.email,
       })
       .then((response) => {
+        showToast(response.message, "success");
         localStorage.setItem("companyData", JSON.stringify(response.data));
         localStorage.setItem("token", `${response.token}`);
         navigate(APP_ROUTES.DASHBOARD);

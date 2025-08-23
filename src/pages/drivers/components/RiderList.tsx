@@ -15,10 +15,12 @@ import { DropDownIcons } from "@/lib/icons/drop_down_icons";
 import { useFetch } from "@/hooks/useFetch";
 import Dispa8chActionDrop from "@/lib/inputs/Dispa8chActionDrop";
 import CreateModal from "./CreateModal";
+import { useApp } from "@/contexts/AppContext";
 
 function RiderList() {
-  const { data, loading, refetch } = useFetch<Order[]>(
-    apiRoutes.order.fetchAll,
+  const { companyId } = useApp();
+  const { data, loading, refetch } = useFetch<Rider[]>(
+    apiRoutes.rider.fetchByCompanyId(companyId),
     []
   );
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
@@ -52,25 +54,25 @@ function RiderList() {
         <Dispa8chTable
           headers={["Name", "Phone", "Email", "Vehicle", "Status", " "]}
         >
-          {data.map((o, i) => (
+          {data.map((rider, i) => (
             <Dispa8chTableRow
               key={i}
               one={
-                <div className={styles.check}>
-                  <Dispa8chCheckbox
-                    id={o.id}
-                    checked={isChecked(o.id)}
-                    onChange={(checked) => toggleCheckbox(o.id, checked)}
-                  />
-                  <span>{o.order_number.toUpperCase()}</span>
-                </div>
+                // <div className={styles.check}>
+                //   <Dispa8chCheckbox
+                //     id={o.id}
+                //     checked={isChecked(o.id)}
+                //     onChange={(checked) => toggleCheckbox(o.id, checked)}
+                //   />
+                //   <span>{o.order_number.toUpperCase()}</span>
+                // </div>
+                rider.rider_first_name + " " + rider.rider_last_name
               }
-              two={o.pickup_username}
-              three={o.pickup_address}
-              four={o.delivery_address}
-              five={Util.formatCurrency(Number(o.delivery_fees), "ngn")}
-              six={formatStatus(o.order_status)}
-              seven={
+              two={rider.rider_phone}
+              three={rider.rider_email}
+              four={rider.rider_vehicle}
+              five={rider.rider_availability ? "Active" : "Inactive"}
+              six={
                 <Dispa8chActionDrop
                   options={[
                     {
@@ -80,19 +82,13 @@ function RiderList() {
                       action: () => {},
                     },
                     {
-                      label: "Assign Rider",
-                      value: "view-details",
-                      extra: DropDownIcons.user_plus,
-                      action: () => {},
-                    },
-                    {
-                      label: "Edit Order",
+                      label: "Edit Rider",
                       value: "view-details",
                       extra: DropDownIcons.pen,
                       action: () => {},
                     },
                     {
-                      label: "Cancel Order",
+                      label: "Delete Rider",
                       value: "view-details",
                       extra: DropDownIcons.cancel_circle,
                       action: () => {},

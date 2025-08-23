@@ -12,7 +12,7 @@ import Dispa8chDropDown from "@/lib/inputs/Dispa8chDropDown";
 import { useModal } from "@/hooks/useModal";
 
 function CreateModal({ refetch }: { refetch: () => void }) {
-  const { open, setOpen } = useModal();
+  const { setOpen, setKey, key } = useModal();
   const api = useApiService();
   const { showToast } = useToast();
   const [sending, setSending] = useState(false);
@@ -126,9 +126,10 @@ function CreateModal({ refetch }: { refetch: () => void }) {
     <Dispa8chModal
       onClose={() => {
         setOpen(false);
+        setKey(null);
       }}
       title="New Order"
-      visible={open}
+      visible={key === "create-order"}
       size="large"
       actionButtonPayload={{
         action: () => {

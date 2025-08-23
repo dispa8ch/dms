@@ -8,7 +8,7 @@ import SearchInput from "@/lib/search/SearchInput";
 import { useModal } from "@/hooks/useModal";
 
 function Orders() {
-  const { setOpen } = useModal();
+  const { setOpen, setKey } = useModal();
   const [currentTab, setCurrentTab] = useState<Tab>({
     label: "",
     value: "all",
@@ -32,6 +32,7 @@ function Orders() {
             onClick={(e) => {
               e?.preventDefault();
               setOpen(true);
+              setKey("create-order");
             }}
             icon={GeneralIcons.plus_filled_white}
             buttonStyle={{ fontSize: "0.9rem" }}

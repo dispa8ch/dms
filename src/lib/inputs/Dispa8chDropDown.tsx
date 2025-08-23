@@ -14,6 +14,8 @@ function Dispa8chDropDown({
   required,
   value,
   type = "small",
+  direction = "down",
+  dropStyles,
 }: Dispa8chDropDown) {
   const [selectedValue, setSelectedValue] =
     React.useState<Dispa8chDropDownOption>({
@@ -40,6 +42,7 @@ function Dispa8chDropDown({
         e.stopPropagation();
         setOpen((prev) => !prev);
       }}
+      style={dropStyles}
     >
       {label && (
         <label>
@@ -50,7 +53,22 @@ function Dispa8chDropDown({
       <span className={styles.value}>{selectedValue.label}</span>
 
       {open && (
-        <div className={styles.options}>
+        <div
+          className={styles.options}
+          style={
+            direction === "down"
+              ? { top: "100%" }
+              : direction === "down-left"
+              ? { top: "100%", left: 0 }
+              : direction === "down-right"
+              ? { top: "100%", right: 0 }
+              : direction === "up-left"
+              ? { bottom: 0, left: 0 }
+              : direction === "up-right"
+              ? { bottom: 0, right: 0 }
+              : { bottom: 0 }
+          }
+        >
           {options.map((option, idx) => (
             <span
               key={idx}
@@ -62,6 +80,7 @@ function Dispa8chDropDown({
               }}
               className={styles.option}
             >
+              {option.extra ?? null}
               {option.label}
             </span>
           ))}

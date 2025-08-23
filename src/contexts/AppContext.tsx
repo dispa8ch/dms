@@ -15,6 +15,7 @@ interface App {
   getTheme: () => Theme;
   updateTheme: (newTheme: Theme) => void;
   isOnline: boolean;
+  companyId: string;
 }
 
 export const AppContext = createContext<App>({
@@ -25,6 +26,7 @@ export const AppContext = createContext<App>({
     throw Error("Must be used inside the App");
   },
   isOnline: navigator.onLine,
+  companyId: "",
 });
 
 function AppProvider({ children }: { children: ReactNode }) {
@@ -34,11 +36,17 @@ function AppProvider({ children }: { children: ReactNode }) {
 
   const [theme, setTheme] = useState<Theme>("light");
   const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
+  const [companyId, setCompanyId] = useState<string>(
+    JSON.parse(localStorage.getItem("companyData") || "{}").company_id || ""
+  );
 
   useEffect(() => {
     const savedTheme = (localStorage.getItem("theme") || "system") as Theme;
     applyTheme(savedTheme);
     setTheme(savedTheme);
+    setCompanyId(
+      JSON.parse(localStorage.getItem("companyData") || "{}").company_id || ""
+    );
 
     if (savedTheme === "system") {
       const mq = window.matchMedia("(prefers-color-scheme: dark)");
@@ -93,7 +101,7 @@ function AppProvider({ children }: { children: ReactNode }) {
 
   return (
     <AppContext.Provider
-      value={{ updateTheme, app_name, theme, getTheme, isOnline }}
+      value={{ updateTheme, app_name, theme, getTheme, isOnline, companyId }}
     >
       {children}
     </AppContext.Provider>

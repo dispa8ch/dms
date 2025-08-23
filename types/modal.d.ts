@@ -29,4 +29,6 @@ interface Dispa8chModal {
 interface Modal {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  key: string | null;
+  setKey: React.Dispatch<React.SetStateAction<string | null>>;
 }

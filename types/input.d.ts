@@ -61,6 +61,14 @@ interface Dispa8chDropDown {
   placeholder?: string;
   loading?: boolean;
   type?: "large" | "small";
+  direction?:
+    | "up"
+    | "down"
+    | "up-left"
+    | "up-right"
+    | "down-left"
+    | "down-right"; // default is down
+  dropStyles?: React.CSSProperties;
 }
 
 interface Dispa8chActionDrop {

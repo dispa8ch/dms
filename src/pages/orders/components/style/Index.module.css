@@ -67,4 +67,32 @@
 .items .total b {
   color: var(--title-color);
   font-weight: 600;
+}
+
+.assign_modal {
+  position: relative;
+}
+.assign_modal .id {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 0.1rem solid var(--border);
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  color: var(--text-color);
+}
+.assign_modal .id span {
+  color: var(--text-color);
+  background: var(--highlight);
+  padding: 0.5rem;
+  font-size: 0.8rem;
+}
+.assign_modal .alert {
+  background: #e41f47;
+  border-radius: 0.3rem;
+  padding: 1rem;
+}
+.assign_modal .alert small {
+  color: #ffffff;
 }/*# sourceMappingURL=Index.module.css.map */

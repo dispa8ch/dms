@@ -19,10 +19,13 @@ function CreateModal({ refetch }: { refetch: () => void }) {
   const [rider, setRider] = useState<CreateRider>({
     rider_email: "",
     rider_phone: "",
-    rider_password: Util.generateTempPassword({
-      length: 16,
-      includeSymbols: false,
-    }),
+    rider_password:
+      "Te" +
+      Util.generateTempPassword({
+        length: 16,
+        includeSymbols: false,
+      }) +
+      "mp",
     rider_first_name: "",
     rider_last_name: "",
     rider_other_names: "",
@@ -90,9 +93,6 @@ function CreateModal({ refetch }: { refetch: () => void }) {
         if (err.name === "AbortError") {
           console.error("Request was aborted due to timeout.");
           showToast("Request was aborted due to timeout.", "error");
-        } else {
-          showToast("Unexpected error occured.", "error");
-          console.error("API Error:", err);
         }
       })
       .finally(() => setSending(false));

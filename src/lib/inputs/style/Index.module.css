@@ -255,7 +255,6 @@
 }
 .drop .options {
   position: absolute;
-  top: 100%;
   right: 0;
   min-width: 6rem;
   background: var(--card-bg);

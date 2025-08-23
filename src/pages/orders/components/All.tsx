@@ -15,8 +15,12 @@ import { DropDownIcons } from "@/lib/icons/drop_down_icons";
 import { useFetch } from "@/hooks/useFetch";
 import CreateModal from "./CreateModal";
 import Dispa8chActionDrop from "@/lib/inputs/Dispa8chActionDrop";
+import AssignModal from "./AssignModal";
+import { useModal } from "@/hooks/useModal";
 
 function All() {
+  const { setOpen, setKey } = useModal();
+  const [order, setOrder] = useState<Order | null>(null);
   const { data, loading, refetch } = useFetch<Order[]>(
     apiRoutes.order.fetchAll,
     []
@@ -98,7 +102,11 @@ function All() {
                       label: "Assign Rider",
                       value: "view-details",
                       extra: DropDownIcons.user_plus,
-                      action: () => {},
+                      action: () => {
+                        setOpen(true);
+                        setKey("assign-rider");
+                        setOrder(o);
+                      },
                     },
                     {
                       label: "Edit Order",
@@ -120,6 +128,11 @@ function All() {
         </Dispa8chTable>
       )}
       <CreateModal refetch={refetch} />
+      <AssignModal
+        refetch={refetch}
+        orderId={order?.id ?? ""}
+        orderNumber={order?.order_number ?? ""}
+      />
     </section>
   );
 }

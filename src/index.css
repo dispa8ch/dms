@@ -5,6 +5,8 @@
   --primary-color: #e41f47;
   --card-bg: #ffffff;
   --head-card-bg: #f6f6f6;
+  --highlight: #f1f1f1;
+  --border: #dfdfdf;
 
   font-family: "Poppins", sans-serif;
 
@@ -73,6 +75,8 @@ label {
   --small-text-color: #bebebe;
   --card-bg: #1e1e1e;
   --head-card-bg: #1e1e1e;
+  --highlight: #201f1f;
+  --border: #2f2f2f;
 }
 
 /* @media (prefers-color-scheme: light) {

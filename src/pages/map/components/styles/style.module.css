@@ -1,0 +1,13 @@
+.marker {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 0.2rem solid rgba(209, 25, 62, 0.3294117647);
+  background: linear-gradient(172.12deg, #fda800 15.95%, #d1193e 103.24%);
+}
+.marker svg {
+  width: 1rem;
+}/*# sourceMappingURL=style.module.css.map */

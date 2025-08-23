@@ -9,6 +9,7 @@ import Dashboard from "@/pages/dashboard";
 import RequireAuth from "@/RequireAuth";
 import Orders from "@/pages/orders";
 import Riders from "@/pages/drivers";
+import Map from "@/pages/map";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
       { index: true, element: <Dashboard /> },
       { path: "/orders", element: <Orders /> },
       { path: "/riders", element: <Riders /> },
+      { path: "/map", element: <Map /> },
     ],
   },
   {

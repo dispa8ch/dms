@@ -79,3 +79,35 @@
     }
   }
 }
+
+.assign_modal {
+  position: relative;
+
+  .id {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 0.1rem solid var(--border);
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    color: var(--text-color);
+
+    span {
+      color: var(--text-color);
+      background: var(--highlight);
+      padding: 0.5rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  .alert {
+    background: #e41f47;
+    border-radius: 0.3rem;
+    padding: 1rem;
+
+    small {
+      color: #ffffff;
+    }
+  }
+}

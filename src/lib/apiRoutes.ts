@@ -37,6 +37,8 @@ export const apiRoutes = {
     fetchByEmail: (email: string) =>
       `${API_BASES.rider}/api/riders/email/${email}`,
     fetchById: (id: string) => `${API_BASES.rider}/api/riders/${id}`,
+    fetchByCompanyId: (id: string) =>
+      `${API_BASES.rider}/api/riders/list/${id}`,
     update: (id: string) => `${API_BASES.rider}/api/riders/${id}`,
     deleteById: (id: string) => `${API_BASES.rider}/api/riders/${id}`,
     fetchOrders: (page: number = 1, limit: number = 20) =>

@@ -66,3 +66,10 @@ interface CreateRiderResponse {
   email: string;
   profile_image: string;
 }
+
+interface RiderForAssignment {
+  rider_id: string;
+  first_name: string;
+  last_name: string;
+  total_orders: number;
+}

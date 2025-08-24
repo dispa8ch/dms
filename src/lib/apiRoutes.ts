@@ -47,5 +47,7 @@ export const apiRoutes = {
     fetchOrderItems: (id: string) =>
       `${API_BASES.rider}/api/orders/${id}/items`,
     location: (id: string) => `${API_BASES.rider}/riders/${id}/location`,
+    fetchForAssignment: (id: string) =>
+      `${API_BASES.rider}/api/riders/assignment/${id}`,
   },
 };

@@ -102,18 +102,6 @@ function Cancelled() {
                       extra: DropDownIcons.user_plus,
                       action: () => {},
                     },
-                    {
-                      label: "Edit Order",
-                      value: "view-details",
-                      extra: DropDownIcons.pen,
-                      action: () => {},
-                    },
-                    {
-                      label: "Cancel Order",
-                      value: "view-details",
-                      extra: DropDownIcons.cancel_circle,
-                      action: () => {},
-                    },
                   ]}
                 />
               }

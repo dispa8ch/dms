@@ -10,8 +10,10 @@ import { apiRoutes } from "@/lib/apiRoutes";
 import { useToast } from "@/contexts/ToastContext";
 import Dispa8chDropDown from "@/lib/inputs/Dispa8chDropDown";
 import { useModal } from "@/hooks/useModal";
+import { useOrder } from "@/hooks/useOrder";
 
 function CreateModal({ refetch }: { refetch: () => void }) {
+  const { order: prevOrder, setOrder: setPrevOrder } = useOrder();
   const { setOpen, setKey, key } = useModal();
   const api = useApiService();
   const { showToast } = useToast();
@@ -84,6 +86,8 @@ function CreateModal({ refetch }: { refetch: () => void }) {
             showToast(res.message, "success");
             refetch();
             setOpen(false);
+            setKey(null);
+            setPrevOrder(null);
             setOrder({
               pickup_username: "",
               pickup_phone: "",
@@ -127,8 +131,9 @@ function CreateModal({ refetch }: { refetch: () => void }) {
       onClose={() => {
         setOpen(false);
         setKey(null);
+        setPrevOrder(null);
       }}
-      title="New Order"
+      title={prevOrder ? "Edit Order" : "New Order"}
       visible={key === "create-order"}
       size="large"
       actionButtonPayload={{
@@ -137,7 +142,8 @@ function CreateModal({ refetch }: { refetch: () => void }) {
         },
         label: "Save",
         disabled:
-          !Util.isAllValid([
+          !prevOrder ||
+          (!Util.isAllValid([
             order?.pickup_username,
             order?.pickup_phone,
             order?.pickup_address,
@@ -150,7 +156,8 @@ function CreateModal({ refetch }: { refetch: () => void }) {
             String(order?.delivery_fees),
             order?.delivery_instruction,
             order?.payment_type,
-          ]) || items.length == 0,
+          ]) &&
+            items.length === 0),
         loading: sending,
       }}
     >
@@ -161,6 +168,7 @@ function CreateModal({ refetch }: { refetch: () => void }) {
             <div className={styles.div}>
               <Dispa8chInput
                 label="Name"
+                value={prevOrder?.pickup_username || order.pickup_username}
                 placeholder="Enter customer name"
                 onChange={(value) => {
                   setOrder((prev) => ({
@@ -173,6 +181,7 @@ function CreateModal({ refetch }: { refetch: () => void }) {
               />
               <Dispa8chInput
                 label="Phone number"
+                value={prevOrder?.pickup_phone || order.pickup_phone}
                 placeholder="123 456 7890"
                 onChange={(value) => {
                   setOrder((prev) => ({
@@ -185,6 +194,7 @@ function CreateModal({ refetch }: { refetch: () => void }) {
               />
               <Dispa8chInput
                 label="Address"
+                value={prevOrder?.pickup_address || order.pickup_address}
                 placeholder="Enter a location"
                 onChange={(value) => {
                   setOrder((prev) => ({
@@ -197,7 +207,7 @@ function CreateModal({ refetch }: { refetch: () => void }) {
               />
               <Dispa8chDateInput
                 label="Pick-up Date & Time"
-                value={order.pickup_time}
+                value={prevOrder?.pickup_time || order.pickup_time}
                 onChange={(value) => {
                   setOrder((prev) => ({
                     ...prev,
@@ -212,6 +222,10 @@ function CreateModal({ refetch }: { refetch: () => void }) {
             <div className={styles.div}>
               <Dispa8chInput
                 label="Receiver"
+                value={
+                  prevOrder?.delivery_receiver_name ||
+                  order.delivery_receiver_name
+                }
                 placeholder="Enter name"
                 onChange={(value) => {
                   setOrder((prev) => ({
@@ -224,6 +238,7 @@ function CreateModal({ refetch }: { refetch: () => void }) {
               />
               <Dispa8chInput
                 label="Phone number"
+                value={prevOrder?.delivery_phone || order.delivery_phone}
                 placeholder="123 456 7890"
                 onChange={(value) => {
                   setOrder((prev) => ({
@@ -236,6 +251,7 @@ function CreateModal({ refetch }: { refetch: () => void }) {
               />
               <Dispa8chInput
                 label="Receiver Email"
+                value={prevOrder?.delivery_email || order.delivery_email}
                 placeholder="Enter receiver email"
                 onChange={(value) => {
                   setOrder((prev) => ({
@@ -248,6 +264,7 @@ function CreateModal({ refetch }: { refetch: () => void }) {
               />
               <Dispa8chInput
                 label="Delivery address"
+                value={prevOrder?.delivery_address || order.delivery_address}
                 placeholder="Enter destination location"
                 onChange={(value) => {
                   setOrder((prev) => ({
@@ -260,7 +277,7 @@ function CreateModal({ refetch }: { refetch: () => void }) {
               />
               <Dispa8chDateInput
                 label="Delivery Date & Time"
-                value={order.delivery_date}
+                value={prevOrder?.delivery_date || order.delivery_date}
                 onChange={(value) => {
                   setOrder((prev) => ({
                     ...prev,
@@ -277,6 +294,7 @@ function CreateModal({ refetch }: { refetch: () => void }) {
               <Dispa8chInput
                 label="Tax Rate % (Optional)"
                 placeholder="Enter tax rate"
+                value={prevOrder?.tax_rate || String(order.tax_rate)}
                 onChange={(value) => {
                   setOrder((prev) => ({
                     ...prev,
@@ -289,6 +307,7 @@ function CreateModal({ refetch }: { refetch: () => void }) {
               <Dispa8chInput
                 label="Delivery fees"
                 placeholder="Enter delivery fee"
+                value={prevOrder?.delivery_fees || String(order.delivery_fees)}
                 onChange={(value) => {
                   setOrder((prev) => ({
                     ...prev,
@@ -300,6 +319,7 @@ function CreateModal({ refetch }: { refetch: () => void }) {
               />
               <Dispa8chInput
                 label="Discount (Optional)"
+                value={prevOrder?.discount || String(order.discount)}
                 placeholder="Enter a location"
                 onChange={(value) => {
                   setOrder((prev) => ({
@@ -313,7 +333,7 @@ function CreateModal({ refetch }: { refetch: () => void }) {
               <Dispa8chDropDown
                 label="Payment type"
                 required
-                value={order.payment_type}
+                value={prevOrder?.payment_type || order.payment_type}
                 type="large"
                 options={[
                   {
@@ -339,6 +359,9 @@ function CreateModal({ refetch }: { refetch: () => void }) {
               />
               <Dispa8chInput
                 label=""
+                value={
+                  prevOrder?.delivery_instruction || order.delivery_instruction
+                }
                 placeholder="Delivery instruction"
                 onChange={(value) => {
                   setOrder((prev) => ({

@@ -5,23 +5,26 @@ import SideBar from "./SideBar";
 import { ApiServiceProvider } from "@/contexts/ApiServiceContext";
 import { ToastProvider } from "@/contexts/ToastContext";
 import ModalProvider from "@/contexts/ModalContext";
+import OrderProvider from "@/contexts/OrderContext";
 
 export default function AppLayout() {
   return (
     <ToastProvider>
-      <ModalProvider>
-        <ApiServiceProvider>
-          <div className={styles.app_layout}>
-            <Header />
-            <main className={styles.app_grid}>
-              <SideBar />
-              <section className={styles.app_content}>
-                <Outlet />
-              </section>
-            </main>
-          </div>
-        </ApiServiceProvider>
-      </ModalProvider>
+      <OrderProvider>
+        <ModalProvider>
+          <ApiServiceProvider>
+            <div className={styles.app_layout}>
+              <Header />
+              <main className={styles.app_grid}>
+                <SideBar />
+                <section className={styles.app_content}>
+                  <Outlet />
+                </section>
+              </main>
+            </div>
+          </ApiServiceProvider>
+        </ModalProvider>
+      </OrderProvider>
     </ToastProvider>
   );
 }

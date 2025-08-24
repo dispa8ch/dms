@@ -17,9 +17,11 @@ import CreateModal from "./CreateModal";
 import Dispa8chActionDrop from "@/lib/inputs/Dispa8chActionDrop";
 import AssignModal from "./AssignModal";
 import { useModal } from "@/hooks/useModal";
+import { useOrder } from "@/hooks/useOrder";
 
 function All() {
   const { setOpen, setKey } = useModal();
+  const { setOrder: setPrevOrder } = useOrder();
   const [order, setOrder] = useState<Order | null>(null);
   const { data, loading, refetch } = useFetch<Order[]>(
     apiRoutes.order.fetchAll,
@@ -98,28 +100,44 @@ function All() {
                       extra: DropDownIcons.eye,
                       action: () => {},
                     },
-                    {
-                      label: "Assign Rider",
-                      value: "view-details",
-                      extra: DropDownIcons.user_plus,
-                      action: () => {
-                        setOpen(true);
-                        setKey("assign-rider");
-                        setOrder(o);
-                      },
-                    },
-                    {
-                      label: "Edit Order",
-                      value: "view-details",
-                      extra: DropDownIcons.pen,
-                      action: () => {},
-                    },
-                    {
-                      label: "Cancel Order",
-                      value: "view-details",
-                      extra: DropDownIcons.cancel_circle,
-                      action: () => {},
-                    },
+                    ...(o.order_status.toLowerCase() !== "cancelled"
+                      ? [
+                          {
+                            label: "Assign Rider",
+                            value: "view-details",
+                            extra: DropDownIcons.user_plus,
+                            action: () => {
+                              setOpen(true);
+                              setKey("assign-rider");
+                              setOrder(o);
+                            },
+                          },
+                        ]
+                      : []),
+                    ...(o.order_status !== "cancelled"
+                      ? [
+                          {
+                            label: "Edit Order",
+                            value: "edit-order",
+                            extra: DropDownIcons.pen,
+                            action: () => {
+                              setPrevOrder(o);
+                              setOpen(true);
+                              setKey("create-order");
+                            },
+                          },
+                        ]
+                      : []),
+                    ...(o.order_status !== "cancelled"
+                      ? [
+                          {
+                            label: "Cancel Order",
+                            value: "view-details",
+                            extra: DropDownIcons.cancel_circle,
+                            action: () => {},
+                          },
+                        ]
+                      : []),
                   ]}
                 />
               }
